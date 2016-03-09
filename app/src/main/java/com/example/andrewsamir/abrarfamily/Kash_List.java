@@ -308,14 +308,14 @@ public class Kash_List extends ActionBarActivity {
 
                                 boolean add = db.ADD(datad.get(hashMap.get(position)).getName(), datad.get(hashMap.get(position)).getRakmManzl(),
                                         datad.get(hashMap.get(position)).getStreet(), datad.get(hashMap.get(position)).getPhoto(),
-                                        Integer.parseInt(datad.get(hashMap.get(position)).getSerial()));
+                                        Integer.parseInt(datad.get(hashMap.get(position)).getSerial()),Integer.toString(hashMap.get(position)+1));
                                 if (!add)
                                     Toast.makeText(Kash_List.this, "You have add this name before", Toast.LENGTH_LONG).show();
                             } else {
 
                                 boolean add = db.ADD(datad.get(position).getName(), datad.get(position).getRakmManzl(),
                                         datad.get(position).getStreet(), datad.get(position).getPhoto(),
-                                        Integer.parseInt(datad.get(position).getSerial()));
+                                        Integer.parseInt(datad.get(position).getSerial()),Integer.toString(position+1));
 
                               //  boolean add = db.ADD("a","s","sa","sa",15);
 

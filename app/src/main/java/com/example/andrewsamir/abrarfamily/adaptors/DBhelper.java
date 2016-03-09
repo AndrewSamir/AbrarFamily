@@ -2,6 +2,7 @@ package com.example.andrewsamir.abrarfamily.adaptors;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -25,7 +26,7 @@ public class DBhelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_EFTKAD = "CREATE TABLE "
             + TABLE_NAME + "( " + SERIAL + " INTEGER PRIMARY KEY, " + NAME+" TEXT , "
             +STREET+" TEXT , "+RAKAM+" TEXT , "+PHOTO
-            + " TEXT )";
+            + " TEXT ,"+ ID +" TEXT )";
 
     public DBhelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -43,7 +44,7 @@ public class DBhelper extends SQLiteOpenHelper {
         db.execSQL("DROP IF EXISTS "+TABLE_NAME);
     }
 
-    public boolean ADD(String name,String rakam,String street,String photo,int serial){
+    public boolean ADD(String name,String rakam,String street,String photo,int serial,String id){
 
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -53,11 +54,9 @@ public class DBhelper extends SQLiteOpenHelper {
         values.put(PHOTO, photo);
         values.put(STREET, street);
         values.put(SERIAL, serial);
-
-
+        values.put(ID, id);
 
         // insert row
-        //long user_row = db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
         long user_row=db.insert(TABLE_NAME, null, values);
     if(user_row==-1)
         return  false;
@@ -65,12 +64,16 @@ public class DBhelper extends SQLiteOpenHelper {
         return true;
 
         }
-    public void deleteuser(String name){
+    public void deleteuser(int serial){
 
         SQLiteDatabase db=this.getWritableDatabase();
-        db.delete(TABLE_NAME,NAME+" = "+name,null);
+        db.delete(TABLE_NAME,SERIAL+" = "+serial,null);
     }
-/*
+    public Cursor getMeetings() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM "+TABLE_NAME,null);
+    }
+    /*
     public String getMeeting(int id){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TBL_MEETING + " WHERE " + MEETING_ID + " = " + id, null);
