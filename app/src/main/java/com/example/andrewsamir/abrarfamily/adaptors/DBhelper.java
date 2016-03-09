@@ -64,10 +64,10 @@ public class DBhelper extends SQLiteOpenHelper {
         return true;
 
         }
-    public void deleteuser(int serial){
+    public void deleteuser(String id){
 
         SQLiteDatabase db=this.getWritableDatabase();
-        db.delete(TABLE_NAME,SERIAL+" = "+serial,null);
+        db.delete(TABLE_NAME,ID+" = "+id,null);
     }
     public Cursor getMeetings() {
         SQLiteDatabase db = this.getReadableDatabase();

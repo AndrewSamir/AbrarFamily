@@ -63,6 +63,10 @@ public class Eftkad extends ActionBarActivity {
                     public void onClick(DialogInterface dialog, int item) {
 
                         /////////////////////////////////////
+                        myDB.deleteuser(np_eftkad.get(position).getNumber());
+                        np_eftkad.remove(position);
+
+                        na_eftkad.notifyDataSetChanged();
                     }
                 });
                 AlertDialog alert = builder.create();
