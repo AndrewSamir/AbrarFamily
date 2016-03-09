@@ -1,7 +1,6 @@
 package com.example.andrewsamir.abrarfamily;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -9,7 +8,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,10 +28,6 @@ import com.example.andrewsamir.abrarfamily.data.DataDetails;
 import com.example.andrewsamir.abrarfamily.data.Name;
 import com.example.andrewsamir.abrarfamily.jsondata.DataInJson;
 import com.google.gson.Gson;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,7 +52,7 @@ public class Kash_List extends ActionBarActivity {
     Eftkad eftkad;
 
     SharedPreferences settings;
-    JSONArray jsonArray;
+    //JSONArray jsonArray;
 
 
     @Override
@@ -66,7 +60,7 @@ public class Kash_List extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.kashf_list_view);
 
-        settings = getApplicationContext().getSharedPreferences("jsonDataEftkad", MODE_PRIVATE);
+     /*   settings = getApplicationContext().getSharedPreferences("jsonDataEftkad", MODE_PRIVATE);
 
         try {
             jsonArray=new JSONArray(settings.getString("set",null));
@@ -74,7 +68,7 @@ public class Kash_List extends ActionBarActivity {
             jsonArray=new JSONArray();
             e.printStackTrace();
         }
-
+*/
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
@@ -290,6 +284,7 @@ public class Kash_List extends ActionBarActivity {
             lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view,final int position, long id) {
+/*
 
 
                     final CharSequence[] items = {
@@ -335,11 +330,13 @@ public class Kash_List extends ActionBarActivity {
                                     e.printStackTrace();
                                 }
 
-                                /*Eftkad.np_eftkad.add(new Name(datad.get(position).getName(),
+                                */
+/*Eftkad.np_eftkad.add(new Name(datad.get(position).getName(),
                                         datad.get(position).getPhoto(),
                                         datad.get(position).getRakmManzl(),
                                         datad.get(position).getStreet(),
-                                        Integer.toString(position + 1)));*/
+                                        Integer.toString(position + 1)));*//*
+
                             }
                         }
                     });
@@ -347,8 +344,9 @@ public class Kash_List extends ActionBarActivity {
                     alert.show();
 
 
-
+*/
                     return true;
+
                 }
             });
 
