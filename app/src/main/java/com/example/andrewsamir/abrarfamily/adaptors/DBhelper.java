@@ -13,8 +13,8 @@ public class DBhelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 2;
 
 
-    private static final String DATABASE_NAME="DB";
-    private static final String TABLE_NAME="Eftkad";
+    private static final String DATABASE_NAME="DBase";
+    private static final String TABLE_NAME="Eftkad_table";
     private static final String ID="id";
     private static final String NAME="name";
     private static final String PHOTO="photo";
@@ -23,7 +23,7 @@ public class DBhelper extends SQLiteOpenHelper {
     private static final String SERIAL="serial";
 
     private static final String CREATE_TABLE_EFTKAD = "CREATE TABLE "
-            + TABLE_NAME + "(" + SERIAL + " INTEGER PRIMARY KEY," + NAME
+            + TABLE_NAME + "( " + SERIAL + " INTEGER PRIMARY KEY, " + NAME+" TEXT , "
             +STREET+" TEXT , "+RAKAM+" TEXT , "+PHOTO
             + " TEXT )";
 
@@ -57,8 +57,13 @@ public class DBhelper extends SQLiteOpenHelper {
 
 
         // insert row
-        long user_row = db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
-        return user_row!=-1;
+        //long user_row = db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_IGNORE);
+        long user_row=db.insert(TABLE_NAME, null, values);
+    if(user_row==-1)
+        return  false;
+    else
+        return true;
+
         }
     public void deleteuser(String name){
 

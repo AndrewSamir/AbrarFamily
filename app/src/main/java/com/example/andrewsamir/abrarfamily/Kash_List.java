@@ -1,6 +1,7 @@
 package com.example.andrewsamir.abrarfamily;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
@@ -8,6 +9,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.andrewsamir.abrarfamily.adaptors.DBhelper;
 import com.example.andrewsamir.abrarfamily.adaptors.NameAdapter;
 import com.example.andrewsamir.abrarfamily.data.DataDetails;
 import com.example.andrewsamir.abrarfamily.data.Name;
@@ -50,6 +53,7 @@ public class Kash_List extends ActionBarActivity {
     int num=1;
     int num_eftkad=1;
     Eftkad eftkad;
+    DBhelper db;
 
     SharedPreferences settings;
     //JSONArray jsonArray;
@@ -69,6 +73,7 @@ public class Kash_List extends ActionBarActivity {
             e.printStackTrace();
         }
 */
+        db=new DBhelper(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
@@ -270,6 +275,9 @@ public class Kash_List extends ActionBarActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     InputMethodManager imm = (InputMethodManager) getSystemService(
                             INPUT_METHOD_SERVICE);
+
+
+
                     imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
                     Intent showdata = new Intent(Kash_List.this, Data_Show.class);
                     if (state)
@@ -284,7 +292,6 @@ public class Kash_List extends ActionBarActivity {
             lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(AdapterView<?> parent, View view,final int position, long id) {
-/*
 
 
                     final CharSequence[] items = {
@@ -296,57 +303,37 @@ public class Kash_List extends ActionBarActivity {
                     builder.setItems(items, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int item) {
 
-                            if(state){
+                            if (state) {
 
 
-                                Eftkad.np_eftkad.add(new Name(datad.get(hashMap.get(position)).getName(),
-                                        datad.get(hashMap.get(position)).getPhoto(),
-                                        datad.get(hashMap.get(position)).getRakmManzl(),
-                                        datad.get(hashMap.get(position)).getStreet(),
-                                        Integer.toString(hashMap.get(position) + 1)));
+                                boolean add = db.ADD(datad.get(hashMap.get(position)).getName(), datad.get(hashMap.get(position)).getRakmManzl(),
+                                        datad.get(hashMap.get(position)).getStreet(), datad.get(hashMap.get(position)).getPhoto(),
+                                        Integer.parseInt(datad.get(hashMap.get(position)).getSerial()));
+                                if (!add)
+                                    Toast.makeText(Kash_List.this, "You have add this name before", Toast.LENGTH_LONG).show();
+                            } else {
 
-                            }
-                            else {
+                                boolean add = db.ADD(datad.get(position).getName(), datad.get(position).getRakmManzl(),
+                                        datad.get(position).getStreet(), datad.get(position).getPhoto(),
+                                        Integer.parseInt(datad.get(position).getSerial()));
 
-                               JSONObject data=new JSONObject();
-                                try {
-                                    data.put("name",datad.get(position).getName());
-                                    data.put("photo",datad.get(position).getPhoto());
-                                    data.put("rakam",datad.get(position).getRakmManzl());
-                                    data.put("street",datad.get(position).getStreet());
-                                    data.put("int",Integer.toString(position + 1));
+                              //  boolean add = db.ADD("a","s","sa","sa",15);
 
-                                    jsonArray.put(data);
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-
-                                SharedPreferences.Editor editor = settings.edit();
-                                try {
-                                    editor.putString("set", jsonArray.toString());
-                                    editor.commit();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-
-                                */
-/*Eftkad.np_eftkad.add(new Name(datad.get(position).getName(),
-                                        datad.get(position).getPhoto(),
-                                        datad.get(position).getRakmManzl(),
-                                        datad.get(position).getStreet(),
-                                        Integer.toString(position + 1)));*//*
+                                if (!add)
+                                    Toast.makeText(Kash_List.this, "You have add this name before", Toast.LENGTH_LONG).show();
+                                else
+                                    Toast.makeText(Kash_List.this, "Done", Toast.LENGTH_LONG).show();
 
                             }
+
                         }
                     });
+
                     AlertDialog alert = builder.create();
                     alert.show();
 
 
-*/
                     return true;
-
                 }
             });
 
