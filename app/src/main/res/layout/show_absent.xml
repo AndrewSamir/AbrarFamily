@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:weightSum="100"
+        android:id="@+id/linAbsent"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:singleLine="true"
+            android:layout_weight="15"
+            android:padding="5dp"
+            android:textStyle="bold"
+
+            android:layout_height="fill_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/textViewAbsent_4V"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:singleLine="true"
+            android:layout_weight="15"
+            android:padding="5dp"
+            android:textStyle="bold"
+
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/textViewAbsent_3V" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:singleLine="true"
+            android:layout_weight="15"
+            android:textStyle="bold"
+
+            android:layout_height="fill_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/textViewAbsent_2V" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="15"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:singleLine="true"
+            android:gravity="center"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Small Text"
+            android:id="@+id/textViewAbsent_1V" />
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="fill_parent"
+            android:padding="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:layout_weight="40"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="الاسم"
+            android:id="@+id/textViewAbsentNameV" />
+    </LinearLayout>
+
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listViewAbsent"
+        android:layout_gravity="center_horizontal" />
+
+
+</LinearLayout>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar2"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

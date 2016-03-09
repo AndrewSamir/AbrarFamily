@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.andrewsamir.abrarfamily" >
+
+
+
+<uses-permission
+    android:name="android.permission.INTERNET"
+    />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+
+        <activity android:name=".LogIn" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+
+        <activity android:name=".MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MainActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Enter_Data"
+            android:parentActivityName=".MainActivity"
+
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.Enter_Data" />
+                <data android:mimeType="image/*" />
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Data_Show"
+            android:parentActivityName=".Kash_List"
+
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.Data_Show" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Kash_List"
+            android:parentActivityName=".MainActivity"
+
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.Kash_List" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+
+        </activity>
+
+        <activity android:name=".Absent"
+            android:parentActivityName=".MainActivity"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.Absent" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Edit_Data"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.Edit_Data" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Eftkad"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.Eftkad" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Absent_list"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.Absent_list" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

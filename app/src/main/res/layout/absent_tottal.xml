@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:weightSum="100"
+    android:paddingTop="10dp"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:layout_weight="15"
+        android:padding="5dp"
+        android:layout_height="fill_parent"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:text="Small Text"
+        android:id="@+id/textViewAbsent_4"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:layout_weight="15"
+        android:padding="5dp"
+
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:text="Small Text"
+        android:id="@+id/textViewAbsent_3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+
+        android:layout_weight="15"
+        android:layout_height="fill_parent"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"        android:text="Small Text"
+        android:id="@+id/textViewAbsent_2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_weight="15"
+        android:padding="5dp"
+
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:text="Small Text"
+        android:id="@+id/textViewAbsent_1" />
+
+    <TextView
+        android:layout_width="60dp"
+        android:layout_height="fill_parent"
+        android:padding="5dp"
+android:layout_marginRight="5dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_weight="40"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/textViewAbsentName" />
+</LinearLayout>
+</LinearLayout>

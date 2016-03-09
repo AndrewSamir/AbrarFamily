@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:padding="10dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Large Text"
+            android:padding="15dp"
+            android:id="@+id/textViewshowname"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/imageView"
+            android:layout_toStartOf="@+id/imageView" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/defualt"
+        android:background="@color/colorPrimaryDark"
+        android:padding="1dp"
+        android:scaleType="fitXY"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:id="@+id/textViewshowaddr"
+            android:layout_below="@+id/textViewshowname"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+
+            android:layout_toLeftOf="@id/imageView"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Medium Text"
+            android:padding="10dp"
+            android:background="@drawable/rect"
+            android:id="@+id/textViewnumber" />
+
+
+    </RelativeLayout>
+</RelativeLayout>
