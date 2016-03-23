@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.andrewsamir.abrarfamily.Eftkad;
 import com.example.andrewsamir.abrarfamily.R;
 import com.example.andrewsamir.abrarfamily.data.Name;
 
@@ -28,6 +29,8 @@ public class NameAdapter extends BaseAdapter
     LayoutInflater inflater;
 
     ImageView iv;
+
+    Eftkad eftkad=new Eftkad();
 
     public NameAdapter(ArrayList<Name> list, Activity activity) {
         this.list = list;
@@ -63,6 +66,18 @@ public class NameAdapter extends BaseAdapter
 
 
         Name x=list.get(position);
+
+       /* try {
+            eftkad.posi.put(position,x.getNumber());
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }*/
+
+       /* SharedPreferences jsonData = getApplicationContext().getSharedPreferences("jsonData", MODE_PRIVATE);
+        SharedPreferences.Editor editor= jsonData.edit();
+
+        x.getID();*/
+
 
         First.setText(x.getName());
         num.setText(x.getNumber());

@@ -26,6 +26,12 @@ public class Name {
 
     String rakm;
     String street;
+    String ID;
+
+    public String getID() {
+        return ID;
+    }
+
 
     String number;
 

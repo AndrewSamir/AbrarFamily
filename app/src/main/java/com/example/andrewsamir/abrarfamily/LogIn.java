@@ -65,7 +65,7 @@ public class LogIn extends ActionBarActivity {
 
                     String url = "https://spreadsheets.google.com/feeds/cells/1rYBqZWwj18ppIbu9ECllT5D8wvIGoc6mOgnn1raH6sU/13/public/basic?alt=json";
 
-                    StringRequest str = new StringRequest(url,
+                        StringRequest str = new StringRequest(url,
                             new Response.Listener<String>() {
                                 @Override
                                 public void onResponse(String response) {

@@ -73,11 +73,5 @@ public class DBhelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM "+TABLE_NAME,null);
     }
-    /*
-    public String getMeeting(int id){
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM " + TBL_MEETING + " WHERE " + MEETING_ID + " = " + id, null);
-        c.moveToFirst();
-        return c.getString(c.getColumnIndex(MEETING_DATE))+','+c.getString(c.getColumnIndex(MEETING_END));
-    }*/
+
 }
