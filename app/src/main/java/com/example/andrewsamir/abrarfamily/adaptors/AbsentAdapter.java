@@ -1,10 +1,12 @@
 package com.example.andrewsamir.abrarfamily.adaptors;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.andrewsamir.abrarfamily.R;
@@ -20,6 +22,7 @@ public class AbsentAdapter extends BaseAdapter {
     ArrayList<AbsentData> list;
     Activity activity;
     LayoutInflater inflater;
+    boolean colo=true;
 
     public AbsentAdapter(ArrayList<AbsentData> list, Activity activity) {
         this.list = list;
@@ -47,11 +50,23 @@ public class AbsentAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         convertView =inflater.inflate(R.layout.absent_tottal,null);
+
+        LinearLayout linearLayout= (LinearLayout) convertView.findViewById(R.id.linabs);
         TextView name= (TextView) convertView.findViewById(R.id.textViewAbsentName);
         TextView abs_1= (TextView) convertView.findViewById(R.id.textViewAbsent_1);
         TextView abs_2= (TextView) convertView.findViewById(R.id.textViewAbsent_2);
         TextView abs_3= (TextView) convertView.findViewById(R.id.textViewAbsent_3);
         TextView abs_4= (TextView) convertView.findViewById(R.id.textViewAbsent_4);
+
+        if(colo) {
+            linearLayout.setBackgroundColor(Color.parseColor("#FFFFFF"));
+            colo=false;
+        }
+        else {
+            linearLayout.setBackgroundColor(Color.parseColor("#CCCCFF"));
+
+            colo=true;
+        }
 
 
         AbsentData ad=list.get(position);

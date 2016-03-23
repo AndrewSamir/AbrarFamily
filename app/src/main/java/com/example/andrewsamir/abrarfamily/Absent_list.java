@@ -1,6 +1,7 @@
 package com.example.andrewsamir.abrarfamily;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -38,7 +39,7 @@ public class Absent_list extends ActionBarActivity {
     ArrayList<AbsentData> np_absent = new ArrayList<>();
     ProgressBar progressBar;
     LinearLayout linearLayout;
-    TextView t1,t2,t3,t4;
+    TextView t1, t2, t3, t4;
 
 
     @Override
@@ -46,116 +47,108 @@ public class Absent_list extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_absent);
 
-        lv= (ListView) findViewById(R.id.listViewAbsent);
+        lv = (ListView) findViewById(R.id.listViewAbsent);
 
-        progressBar=(ProgressBar)findViewById(R.id.progressBar2);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar2);
         progressBar.setVisibility(View.INVISIBLE);
 
-        linearLayout=(LinearLayout)findViewById(R.id.linAbsent);
+        linearLayout = (LinearLayout) findViewById(R.id.linAbsent);
 
-        t1=(TextView)findViewById(R.id.textViewAbsent_1V);
-        t2=(TextView)findViewById(R.id.textViewAbsent_2V);
-        t3=(TextView)findViewById(R.id.textViewAbsent_3V);
-        t4=(TextView)findViewById(R.id.textViewAbsent_4V);
+        t1 = (TextView) findViewById(R.id.textViewAbsent_1V);
+        t2 = (TextView) findViewById(R.id.textViewAbsent_2V);
+        t3 = (TextView) findViewById(R.id.textViewAbsent_3V);
+        t4 = (TextView) findViewById(R.id.textViewAbsent_4V);
 
-        if(isOnline()){
+        if (isOnline()) {
             progressBar.setVisibility(View.VISIBLE);
             linearLayout.setVisibility(View.INVISIBLE);
 
-        RequestQueue queue = Volley.newRequestQueue(Absent_list.this);
-
-        String url = "https://spreadsheets.google.com/feeds/cells/1rYBqZWwj18ppIbu9ECllT5D8wvIGoc6mOgnn1raH6sU/2/public/basic?alt=json";
-
-        StringRequest str = new StringRequest(url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
+            RequestQueue queue = Volley.newRequestQueue(Absent_list.this);
+            SharedPreferences jsonData = getApplicationContext().getSharedPreferences("jsonData", MODE_PRIVATE);
 
 
-                        dt_absent = response.toString();
+            String url = jsonData.getString("AbsentURL", null);
+
+            StringRequest str = new StringRequest(url,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+
+                            Gson gson = new Gson();
+
+                            dd = gson.fromJson(response, DataInJson.class);
 
 
+                            int x = firstAbsent();
+
+                            // new getfirst().execute();
+                            t4.setText(dd.getFeed().getEntry().get(x - 39).getContent().get$t().substring(0, dd.getFeed().getEntry().get(x - 39).getContent().get$t().length() - 5));
+
+                            t1.setText(dd.getFeed().getEntry().get(x - 36).getContent().get$t().substring(0, dd.getFeed().getEntry().get(x - 36).getContent().get$t().length() - 5));
+
+                            t2.setText(dd.getFeed().getEntry().get(x - 37).getContent().get$t().substring(0, dd.getFeed().getEntry().get(x - 37).getContent().get$t().length() - 5));
+
+                            t3.setText(dd.getFeed().getEntry().get(x - 38).getContent().get$t().substring(0, dd.getFeed().getEntry().get(x - 38).getContent().get$t().length() - 5));
 
 
+                            ArrayList<AbsentData> n = new ArrayList<>();
 
-                        Gson gson=new Gson();
+                            for (int i = 37; i < dd.getFeed().getEntry().size(); ) {
 
-                         dd=gson.fromJson(response.toString(),DataInJson.class);
+                                if (dd.getFeed().getEntry().get(i).getContent().get$t().equals(""))
+                                    break;
+
+                                n.add(new AbsentData(dd.getFeed().getEntry().get(i).getContent().get$t(),
+                                        dd.getFeed().getEntry().get(x).getContent().get$t(),
+                                        dd.getFeed().getEntry().get(x - 1).getContent().get$t(),
+                                        dd.getFeed().getEntry().get(x - 2).getContent().get$t(),
+                                        dd.getFeed().getEntry().get(x - 3).getContent().get$t()
+                                ));
+
+                                x = x + 36;
+
+                                i = i + 36;
+                            }
+
+                            AbsentAdapter na = new AbsentAdapter(n, Absent_list.this);
+
+                            lv.setAdapter(na);
 
 
-                       int x=firstAbsent();
-
-                       // new getfirst().execute();
-                        t4.setText( dd.getFeed().getEntry().get(x-39).getContent().get$t().substring(0,dd.getFeed().getEntry().get(x-39).getContent().get$t().length()-5));
-
-                        t1.setText(dd.getFeed().getEntry().get(x - 36).getContent().get$t().substring(0, dd.getFeed().getEntry().get(x - 36).getContent().get$t().length() - 5));
-
-                        t2.setText(dd.getFeed().getEntry().get(x - 37).getContent().get$t().substring(0, dd.getFeed().getEntry().get(x - 37).getContent().get$t().length() - 5));
-
-                        t3.setText(dd.getFeed().getEntry().get(x-38).getContent().get$t().substring(0,dd.getFeed().getEntry().get(x-38).getContent().get$t().length()-5));
-
-
-                        ArrayList<AbsentData> n=new ArrayList<>();
-
-                        for(int i=37;i<dd.getFeed().getEntry().size();){
-
-                            if(dd.getFeed().getEntry().get(i).getContent().get$t().equals(""))
-                                break;
-
-                            n.add(new AbsentData(dd.getFeed().getEntry().get(i).getContent().get$t(),
-                                    dd.getFeed().getEntry().get(x).getContent().get$t(),
-                                    dd.getFeed().getEntry().get(x-1).getContent().get$t(),
-                                    dd.getFeed().getEntry().get(x-2).getContent().get$t(),
-                                    dd.getFeed().getEntry().get(x-3).getContent().get$t()
-                            ));
-
-                            x=x+36;
-
-                            i=i+36;
+                            linearLayout.setVisibility(View.VISIBLE);
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
 
-                        AbsentAdapter na=new AbsentAdapter(n,Absent_list.this);
 
-                        lv.setAdapter(na);
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(Absent_list.this, error.getMessage(), Toast.LENGTH_LONG).show();
 
+                        }
+                    });
+            queue.add(str);
+        } else
 
-                        linearLayout.setVisibility(View.VISIBLE);
-                        progressBar.setVisibility(View.INVISIBLE);
-                    }
+        {
+            Toast.makeText(Absent_list.this, "please make sure of your Internet connection then try again ", Toast.LENGTH_LONG).show();
 
-
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(Absent_list.this, error.getMessage(), Toast.LENGTH_LONG).show();
-
-                    }
-                });
-        queue.add(str);}
-    else
-
-    {
-        Toast.makeText(Absent_list.this, "please make sure of your Internet connection then try again ", Toast.LENGTH_LONG).show();
-
-    }
+        }
 
     }
 
 
+    public int firstAbsent() {
 
-public int firstAbsent(){
+        for (int i = 70; i > 41; i--) {
 
-    for(int i= 70;i==41;i--){
+            if (!dd.getFeed().getEntry().get(i).getContent().get$t().equals("."))
+                return i;
+        }
 
-        Toast.makeText(Absent_list.this,"test",Toast.LENGTH_SHORT).show();
-
-        if(!dd.getFeed().getEntry().get(i).getContent().get$t().equals("."))
-            return i;
+        return 41;
     }
-
-    return 41;
-}
 
     public boolean isOnline() {
         ConnectivityManager cm =
@@ -164,17 +157,17 @@ public int firstAbsent(){
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
-    private  class  getfirst extends AsyncTask<Void,Integer,Integer>{
+    private class getfirst extends AsyncTask<Void, Integer, Integer> {
 
 
         @Override
         protected Integer doInBackground(Void... params) {
 
-            for(int i= 70;i==41;i--){
+            for (int i = 70; i == 41; i--) {
 
-                Toast.makeText(Absent_list.this,"test",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Absent_list.this, "test", Toast.LENGTH_SHORT).show();
 
-                if(!dd.getFeed().getEntry().get(i).getContent().get$t().equals("."))
+                if (!dd.getFeed().getEntry().get(i).getContent().get$t().equals("."))
                     return i;
             }
 
@@ -185,7 +178,7 @@ public int firstAbsent(){
         @Override
         protected void onPostExecute(Integer integer) {
             super.onPostExecute(integer);
-           // x=integer;
+            // x=integer;
         }
     }
 

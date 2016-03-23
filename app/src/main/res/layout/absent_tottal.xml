@@ -6,6 +6,7 @@
 <LinearLayout
     android:layout_width="fill_parent"
     android:weightSum="100"
+    android:id="@+id/linabs"
     android:paddingTop="10dp"
     android:layout_height="wrap_content">
     <TextView
