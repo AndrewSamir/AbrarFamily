@@ -258,7 +258,7 @@ public class Enter_Data extends ActionBarActivity {
 
 
             Random rand=new Random();
-            int g=rand.nextInt(999999);
+            int g=rand.nextInt(99999999);
             String data = "entry_1159314701=" + URLEncoder.encode(jsonData.getString("name","error")) + "&" +
                     "entry_264438255=" + URLEncoder.encode(jsonData.getString("fasl","error"))+"&"+
                     "entry_873042066=" + URLEncoder.encode(name) + "&" +

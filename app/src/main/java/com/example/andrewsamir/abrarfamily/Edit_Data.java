@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -305,8 +306,10 @@ public class Edit_Data extends ActionBarActivity {
             String fullUrl = "https://docs.google.com/forms/d/15JBKS_BFdwULOSIl-EZ3nllG3pXwY4W8I0JStqbQIpw/formResponse";
             HttpRequest mReq = new HttpRequest();
 
-            String data = "entry_1159314701=" + URLEncoder.encode("Andrew") + "&" +
-                    "entry_264438255=" + URLEncoder.encode("ابيب")+"&"+
+            SharedPreferences jsonData = getApplicationContext().getSharedPreferences("jsonData", MODE_PRIVATE);
+
+            String data = "entry_1159314701=" + URLEncoder.encode(jsonData.getString("name","error")) + "&" +
+                    "entry_264438255=" + URLEncoder.encode(jsonData.getString("fasl","error"))+"&"+
                     "entry_873042066=" + URLEncoder.encode(name) + "&" +
                     "entry_2083578039=" + URLEncoder.encode(homeN)+"&"+
                     "entry_1455227551=" + URLEncoder.encode(street) + "&" +

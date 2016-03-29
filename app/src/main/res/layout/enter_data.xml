@@ -31,9 +31,13 @@
 
                 <ImageView
                     android:layout_width="fill_parent"
-                    android:layout_height="200dp"
-                    android:padding="20dp"
-                    android:scaleType="fitXY"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:paddingTop="20sp"
+                    android:paddingBottom="20sp"
+                    android:paddingRight="50sp"
+                    android:paddingLeft="50sp"
+                    android:scaleType="fitCenter"
                     android:id="@+id/imageViewphoto"
                     android:src="@drawable/defualt"/>
 

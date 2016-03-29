@@ -127,22 +127,22 @@ Kash_List kl;
         });
 
         if(kl.datad.get(pos).getBaba().equals("null"))
-            linbaba.setVisibility(View.INVISIBLE);
+            linbaba.setVisibility(View.GONE);
 
         if(kl.datad.get(pos).getMama().equals("null"))
-            linmama.setVisibility(View.INVISIBLE);
+            linmama.setVisibility(View.GONE);
 
         if(kl.datad.get(pos).getPhone().equals("null"))
-            linphone.setVisibility(View.INVISIBLE);
+            linphone.setVisibility(View.GONE);
 
         if(kl.datad.get(pos).getAnotherAdd().equals("null"))
-            lindesc.setVisibility(View.INVISIBLE);
+            lindesc.setVisibility(View.GONE);
 
         if(kl.datad.get(pos).getDescription().equals("null"))
-            linother.setVisibility(View.INVISIBLE);
+            linother.setVisibility(View.GONE);
 
         if(kl.datad.get(pos).getBirthday().equals("null"))
-            birth.setVisibility(View.INVISIBLE);
+            birth.setVisibility(View.GONE);
     }
 
     public Bitmap StringToBitMap(String encodedString){

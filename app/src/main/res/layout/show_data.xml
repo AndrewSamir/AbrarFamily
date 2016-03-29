@@ -19,8 +19,8 @@
             android:padding="12dp"
             android:layout_height="wrap_content">
             <ImageView
-                android:layout_width="145dp"
-                android:layout_height="175dp"
+                android:layout_width="145sp"
+                android:layout_height="175sp"
                 android:id="@+id/imageView2"
                 android:background="#CC33CC"
                 android:padding="2dp"

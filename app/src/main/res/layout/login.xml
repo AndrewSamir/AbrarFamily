@@ -1,65 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:background="@drawable/rect"
-android:layout_margin="5dp"    android:layout_height="match_parent">
-<ScrollView
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
-    <LinearLayout
+    android:layout_height="fill_parent"
+    android:layout_margin="5dp"
+    android:background="@drawable/rect"
+    android:orientation="vertical">
+
+    <ScrollView
         android:layout_width="fill_parent"
-        android:orientation="vertical"
-        android:padding="30dp"
-        android:layout_gravity="center_vertical"
-        android:gravity="center"
-        android:layout_marginTop="70dp"
-        android:layout_height="wrap_content">
+        android:layout_height="fill_parent">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="15dp"
-        android:paddingLeft="12dp"
-        android:paddingBottom="15dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/rect"
-        android:hint="UserName"
-        android:id="@+id/editTextusername"
-        android:layout_gravity="center_horizontal" />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="30sp">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:paddingTop="15dp"
-        android:paddingLeft="12dp"
-        android:paddingBottom="15dp"
-        android:background="@drawable/rect"
-        android:layout_marginBottom="10dp"
+            <EditText
+                android:id="@+id/editTextusername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20sp"
+                android:background="@drawable/rect"
+                android:hint="UserName"
+                android:paddingBottom="15sp"
+                android:paddingLeft="12sp"
+                android:paddingTop="15sp" />
 
-        android:hint="Password"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/editTextpassword"
-        android:layout_gravity="center_horizontal" />
+            <EditText
+                android:id="@+id/editTextpassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/rect"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:paddingBottom="15sp"
+                android:paddingLeft="12sp"
+                android:paddingTop="15sp" />
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            <CheckBox
+                android:id="@+id/checkBoxuser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:text="Remember me" />
 
-        android:layout_gravity="left"
-        android:text="Remember me"
-        android:id="@+id/checkBoxuser" />
+            <Button
+                android:id="@+id/buttonlogin"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20sp"
+                android:background="@drawable/rect"
+                android:padding="10sp"
+                android:text="LogIn"
+                android:textSize="30sp" />
 
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/rect"
-        android:text="LogIn"
-        android:textSize="30dp"
-        android:padding="10dp"
-        android:id="@+id/buttonlogin" />
-
-    </LinearLayout>
-</ScrollView>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

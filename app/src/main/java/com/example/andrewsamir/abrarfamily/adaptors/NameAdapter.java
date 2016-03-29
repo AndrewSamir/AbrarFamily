@@ -67,16 +67,6 @@ public class NameAdapter extends BaseAdapter
 
         Name x=list.get(position);
 
-       /* try {
-            eftkad.posi.put(position,x.getNumber());
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }*/
-
-       /* SharedPreferences jsonData = getApplicationContext().getSharedPreferences("jsonData", MODE_PRIVATE);
-        SharedPreferences.Editor editor= jsonData.edit();
-
-        x.getID();*/
 
 
         First.setText(x.getName());
@@ -89,9 +79,6 @@ public class NameAdapter extends BaseAdapter
         else
         enwan.setText(x.getRakm()+" شارع "+x.getStreet());
 
-
-        //  iv.setLayoutParams(new AbsListView.LayoutParams(50, 50));
-//        iv.setImageBitmap(StringToBitMap(x.getPhoto()));
 
         NamesAndView container=new NamesAndView();
         container.name=x;
