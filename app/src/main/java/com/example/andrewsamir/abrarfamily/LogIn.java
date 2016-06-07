@@ -64,7 +64,7 @@ public class LogIn extends ActionBarActivity {
 
                     RequestQueue queue = Volley.newRequestQueue(LogIn.this);
 
-                    String url = "https://spreadsheets.google.com/feeds/cells/1rYBqZWwj18ppIbu9ECllT5D8wvIGoc6mOgnn1raH6sU/13/public/basic?alt=json";
+                    String url = "https://spreadsheets.google.com/feeds/cells/1rYBqZWwj18ppIbu9ECllT5D8wvIGoc6mOgnn1raH6sU/13/public/basLic?alt=json";
 
                     StringRequest str = new StringRequest(url,
                             new Response.Listener<String>() {

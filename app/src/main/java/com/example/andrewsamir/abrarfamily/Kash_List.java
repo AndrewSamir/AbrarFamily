@@ -64,15 +64,7 @@ public class Kash_List extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.kashf_list_view);
 
-     /*   settings = getApplicationContext().getSharedPreferences("jsonDataEftkad", MODE_PRIVATE);
 
-        try {
-            jsonArray=new JSONArray(settings.getString("set",null));
-        } catch (JSONException e) {
-            jsonArray=new JSONArray();
-            e.printStackTrace();
-        }
-*/
         db = new DBhelper(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -229,6 +221,7 @@ public class Kash_List extends ActionBarActivity {
         state = false;
         num = 1;
         SharedPreferences jsonData = getApplicationContext().getSharedPreferences("jsonData", MODE_PRIVATE);
+
 
 
         Gson gson = new Gson();

@@ -211,6 +211,7 @@ public class Absent extends ActionBarActivity {
         String data = "entry_78838420=" + URLEncoder.encode(jsonData.getString("fasl","error")) + "&" +
                 "entry_19855689="+URLEncoder.encode(dataabsenttosend.substring(4));
         String response = mReq.sendPost(fullUrl, data);
+        Toast.makeText(Absent.this,response,Toast.LENGTH_LONG).show();
     }
 
     @Override
