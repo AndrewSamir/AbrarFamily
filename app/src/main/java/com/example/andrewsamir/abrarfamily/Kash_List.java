@@ -20,16 +20,16 @@ import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.andrewsamir.abrarfamily.adaptors.DBhelper;
 import com.example.andrewsamir.abrarfamily.adaptors.NameAdapter;
 import com.example.andrewsamir.abrarfamily.data.DataDetails;
 import com.example.andrewsamir.abrarfamily.data.Name;
 import com.example.andrewsamir.abrarfamily.jsondata.DataInJson;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
+import com.firebase.client.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -54,6 +54,8 @@ public class Kash_List extends ActionBarActivity {
     int num_eftkad = 1;
     Eftkad eftkad;
     DBhelper db;
+    DataSnapshot myChild;
+
 
     SharedPreferences settings;
     //JSONArray jsonArray;
@@ -161,8 +163,90 @@ public class Kash_List extends ActionBarActivity {
 
             case R.id.action_favorite:
                 if (isOnline()) {
+                    final SharedPreferences jsonData = getApplicationContext().getSharedPreferences("jsonData", MODE_PRIVATE);
 
-                    progressBar.setVisibility(View.VISIBLE);
+                    final Firebase ref = new Firebase("https://abrar-family.firebaseio.com/");
+
+                    Query queryRef = ref.child("fsol").child(jsonData.getString("fasl","default"));
+                    queryRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot snapshot) {
+
+                            try {
+
+                                Iterable<DataSnapshot> myChildren =  snapshot.getChildren();
+                                while (myChildren.iterator().hasNext()) {
+                                    int i =0;
+                                    myChild = myChildren.iterator().next();
+
+
+                                        Toast.makeText(Kash_List.this,myChild.child("papa").getValue().toString()+" "+myChild.getKey(),Toast.LENGTH_SHORT).show();
+
+
+                                        datad.add(new DataDetails(myChild.child("name").getValue().toString(),
+                                                myChild.child("homeNo").getValue().toString(),
+                                                myChild.child("street").getValue().toString(),
+                                                myChild.child("floor").getValue().toString(),
+                                                myChild.child("flat").getValue().toString(),
+                                                myChild.child("description").getValue().toString(),
+                                                myChild.child("anotherAdd").getValue().toString(),
+                                                myChild.child("papa").getValue().toString(),
+                                                myChild.child("mama").getValue().toString(),
+                                                myChild.child("phone").getValue().toString(),
+                                                myChild.child("birthdate").getValue().toString(),
+                                                myChild.child("photo").getValue().toString(),
+                                                "12"));
+
+
+
+
+                            /*            boolean add = db.ADD_KASHF(myChild.child("name").getValue().toString(),
+                                                myChild.child("homeNo").getValue().toString(),//rakm manzl
+                                                myChild.child("street").getValue().toString(),//street
+                                                myChild.child("photo").getValue().toString(),//photo
+                                               Integer.parseInt( myChild.getKey()),//serial
+                                                myChild.getKey(),//id
+                                                myChild.child("birthdate").getValue().toString(),//birthdate
+                                                myChild.child("floor").getValue().toString(),//floor
+                                                myChild.child("flat").getValue().toString(),//flat
+                                                myChild.child("papa").getValue().toString(),//papa
+                                                myChild.child("mama").getValue().toString(),//mama
+                                                myChild.child("phone").getValue().toString(),//phone
+                                                myChild.child("description").getValue().toString(),//description
+                                                myChild.child("anotherAdd").getValue().toString());//another address
+                                        if (add)
+                                            Toast.makeText(Kash_List.this, "You have add this name before", Toast.LENGTH_LONG).show();
+                                       *//* DataArray.add(new data_news(myChild.child("Picture").getValue().toString(),
+                                                myChild.child("Text").getValue().toString(),
+                                                myChild.getKey().toString()));
+*/
+
+                                }
+
+
+                                np.clear();
+                                for (DataDetails d : datad) {
+                                    np.add(new Name(d.getName(), d.getPhoto(), d.getRakmManzl(), d.getStreet(), Integer.toString(num)));
+                                    num++;
+                                }
+
+                                na = new NameAdapter(np, Kash_List.this);
+
+                                lv.setAdapter(na);
+
+                            } catch (Exception e) {
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(FirebaseError firebaseError) {
+                            System.out.println("The read failed: " + firebaseError.getMessage());
+                        }
+                    });
+
+
+                    /*progressBar.setVisibility(View.VISIBLE);
                     lv.setVisibility(View.INVISIBLE);
 
                     RequestQueue queue = Volley.newRequestQueue(Kash_List.this);
@@ -200,7 +284,9 @@ public class Kash_List extends ActionBarActivity {
                 } else
                     Toast.makeText(Kash_List.this, "please make sure of your Internet connection then try again ", Toast.LENGTH_LONG).show();
 
+*/
 
+                }
                 return true;
             // Respond to the action bar's Up/Home button
             case android.R.id.home:

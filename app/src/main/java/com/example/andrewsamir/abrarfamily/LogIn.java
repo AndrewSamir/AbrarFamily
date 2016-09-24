@@ -13,27 +13,35 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.example.andrewsamir.abrarfamily.jsondata.DataInJson;
-import com.google.gson.Gson;
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
+import com.firebase.client.ValueEventListener;
+
 
 /**
  * Created by Andrew Samir on 2/18/2016.
  */
 public class LogIn extends ActionBarActivity {
+
+    static Firebase myFirebaseRef;
+
     EditText usernamee;
     EditText password;
     String dt;
     CheckBox checkBox;
+    DataSnapshot myChild;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+        Firebase.setAndroidContext(this);
+        myFirebaseRef = new Firebase(getString(R.string.MyFirebase_Database));
+
 
         SharedPreferences jsonData = getApplicationContext().getSharedPreferences("jsonData", MODE_PRIVATE);
 
@@ -61,8 +69,43 @@ public class LogIn extends ActionBarActivity {
 
                 if (isOnline()) {
 
+                    // Get a reference to our posts
+                    Firebase ref = new Firebase("https://abrar-family.firebaseio.com/");
 
-                    RequestQueue queue = Volley.newRequestQueue(LogIn.this);
+// Attach an listener to read the data at our posts reference
+                    Query queryRef = ref.child("khodam");
+                    queryRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot snapshot) {
+
+
+                            SharedPreferences jsonData = getApplicationContext().getSharedPreferences("jsonData", MODE_PRIVATE);
+                            SharedPreferences.Editor editor = jsonData.edit();
+
+                            try {
+                                editor.putString("name", usernamee.getText().toString());
+                                editor.putString("fasl", snapshot.child(usernamee.getText().toString()).getValue().toString());
+                                editor.commit();
+                                Toast.makeText(LogIn.this,snapshot.child(usernamee.getText().toString()).getValue().toString(),Toast.LENGTH_LONG).show();
+
+                                Intent gohome = new Intent(LogIn.this, MainActivity.class);
+                                gohome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                                finish();
+                                startActivity(gohome);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                Toast.makeText(LogIn.this,"Invalid UserName",Toast.LENGTH_LONG).show();
+                                usernamee.setText("");
+                            }
+                        }
+                        @Override
+                        public void onCancelled(FirebaseError firebaseError) {
+                            System.out.println("The read failed: " + firebaseError.getMessage());
+                        }
+                    });
+
+                /*    RequestQueue queue = Volley.newRequestQueue(LogIn.this);
 
                     String url = "https://spreadsheets.google.com/feeds/cells/1rYBqZWwj18ppIbu9ECllT5D8wvIGoc6mOgnn1raH6sU/13/public/basLic?alt=json";
 
@@ -77,8 +120,8 @@ public class LogIn extends ActionBarActivity {
                                     dt = response.toString();
 
 
-                                   /* editor.putString("json", dt);
-                                    editor.commit();*/
+                                   *//* editor.putString("json", dt);
+                                    editor.commit();*//*
 
                                     Gson gson = new Gson();
                                     Toast.makeText(LogIn.this, usernamee.getText(), Toast.LENGTH_LONG).show();
@@ -159,7 +202,7 @@ public class LogIn extends ActionBarActivity {
 
                                 }
                             });
-                    queue.add(str);
+                    queue.add(str);*/
                 } else
                     Toast.makeText(LogIn.this, "please make sure of your Internet connection then try again ", Toast.LENGTH_LONG).show();
 

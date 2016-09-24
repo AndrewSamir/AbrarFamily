@@ -58,7 +58,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Kash_List"
+        <activity android:name=".KashfList"
             android:parentActivityName=".MainActivity"
 
             >

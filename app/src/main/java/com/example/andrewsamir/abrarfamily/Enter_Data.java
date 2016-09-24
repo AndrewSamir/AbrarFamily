@@ -29,17 +29,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.Query;
+import com.firebase.client.ValueEventListener;
+
 import java.io.ByteArrayOutputStream;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
-import java.util.Random;
 
 /**
  * Created by Andrew Samir on 1/27/2016.
  */
 public class Enter_Data extends ActionBarActivity {
+
+
+    DataSnapshot myChild;
 
 
     private EditText fromDateEtxt;
@@ -48,20 +55,20 @@ public class Enter_Data extends ActionBarActivity {
 
     private SimpleDateFormat dateFormatter;
 
+     boolean again=false;
 
-
-    String date="null";
-    String name=null;
-    String homeN=null;
-    String street=null;
-    String floor=null;
-    String home=null;
-    String desc=null;
-    String another=null;
-    String babamob=null;
-    String mamamob=null;
-    String phone=null;
-    String photosend="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";
+    String date = "null";
+    String name = null;
+    String homeN = null;
+    String street = null;
+    String floor = null;
+    String home = null;
+    String desc = null;
+    String another = null;
+    String babamob = null;
+    String mamamob = null;
+    String phone = null;
+    String photosend = "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";
 
 
     private static final int CAMERA_REQUEST = 1888;
@@ -76,8 +83,8 @@ public class Enter_Data extends ActionBarActivity {
         setContentView(R.layout.enter_data);
         SharedPreferences jsonData = getApplicationContext().getSharedPreferences("jsonData", MODE_PRIVATE);
 
-        TextView fasl= (TextView) findViewById(R.id.textViewfasl);
-        fasl.setText( "  فصل القديس  "+jsonData.getString("fasl",null));
+        TextView fasl = (TextView) findViewById(R.id.textViewfasl);
+        fasl.setText("  فصل القديس  " + jsonData.getString("fasl", null));
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -88,8 +95,6 @@ public class Enter_Data extends ActionBarActivity {
         fromDateEtxt.setInputType(InputType.TYPE_NULL);
 
 
-
-
         Calendar newCalendar = Calendar.getInstance();
         fromDatePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
 
@@ -97,13 +102,13 @@ public class Enter_Data extends ActionBarActivity {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
 
-                date=dateFormatter.format(newDate.getTime());
+                date = dateFormatter.format(newDate.getTime());
                 fromDateEtxt.setText(dateFormatter.format(newDate.getTime()));
             }
 
-        },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 
-       ImageButton imageButton= (ImageButton) findViewById(R.id.imageButton);
+        ImageButton imageButton = (ImageButton) findViewById(R.id.imageButton);
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,7 +116,7 @@ public class Enter_Data extends ActionBarActivity {
 
             }
         });
-        imv= (ImageView) findViewById(R.id.imageViewphoto);
+        imv = (ImageView) findViewById(R.id.imageViewphoto);
 
 //        Button takephoto= (Button) findViewById(R.id.buttonphoto);
         imv.setOnClickListener(new View.OnClickListener() {
@@ -127,11 +132,10 @@ public class Enter_Data extends ActionBarActivity {
                     public void onClick(DialogInterface dialog, int item) {
                         // Do something with the selection
                         //mDoneButton.setText(items[item]);
-                        if(items[item].equals("Camera")){
+                        if (items[item].equals("Camera")) {
                             Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                             startActivityForResult(cameraIntent, CAMERA_REQUEST);
-                        }
-                        else if(items[item].equals("Gallery")){
+                        } else if (items[item].equals("Gallery")) {
                             Intent i = new Intent(
                                     Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
@@ -223,6 +227,7 @@ public class Enter_Data extends ActionBarActivity {
                         @Override
                         public void run() {
 
+                            again=true;
                             postData();
 
                         }
@@ -234,10 +239,8 @@ public class Enter_Data extends ActionBarActivity {
 
                     finish();
                     startActivity(gohome);
-                }
-
-                else
-                    Toast.makeText(Enter_Data.this,"please make sure of your Internet connection then try again ",Toast.LENGTH_LONG).show();
+                } else
+                    Toast.makeText(Enter_Data.this, "please make sure of your Internet connection then try again ", Toast.LENGTH_LONG).show();
 
             }
 
@@ -250,7 +253,60 @@ public class Enter_Data extends ActionBarActivity {
 
     public void postData() {
 
-        try {
+        final SharedPreferences jsonData = getApplicationContext().getSharedPreferences("jsonData", MODE_PRIVATE);
+
+        final Firebase ref = new Firebase("https://abrar-family.firebaseio.com/");
+
+        Query queryRef = ref.child("fsol").child(jsonData.getString("fasl","default"));
+        queryRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+
+                String id="0";
+                Iterable<DataSnapshot> myChildren =  snapshot.getChildren();
+                while (myChildren.iterator().hasNext()) {
+
+                    myChild = myChildren.iterator().next();
+                    id=myChild.getKey();
+                }
+                try {
+                    long i = Long.parseLong(id);
+                   // i = snapshot.getChildrenCount();
+
+                    Toast.makeText(Enter_Data.this, i + 1 + "", Toast.LENGTH_SHORT).show();
+
+                    if(again) {
+                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("name").setValue(name);
+                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("homeNo").setValue(home);
+                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("street").setValue(street);
+                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("floor").setValue(floor);
+                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("flat").setValue(homeN);
+                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("description").setValue(desc);
+                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("anotherAdd").setValue(another);
+                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("papa").setValue(babamob);
+                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("mama").setValue(mamamob);
+                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("phone").setValue(phone);
+                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("image").setValue(photosend);
+                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("birthdate").setValue(date);
+
+                        again=false;
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                System.out.println("The read failed: " + firebaseError.getMessage());
+            }
+        });
+
+
+
+
+        /*try {
             String fullUrl = "https://docs.google.com/forms/d/1fU7L5ov51Vozf7UCkMqikmjlcAYzl-HnDNI9FwuuUkA/formResponse";
             HttpRequest mReq = new HttpRequest();
 
@@ -278,7 +334,7 @@ public class Enter_Data extends ActionBarActivity {
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(Enter_Data.this,"errrrrror",Toast.LENGTH_LONG).show();
-        }
+        }*/
     }
 
     public byte[] getBytesFromBitmap(Bitmap bitmap) {
@@ -286,6 +342,7 @@ public class Enter_Data extends ActionBarActivity {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
         return stream.toByteArray();
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -314,19 +371,16 @@ public class Enter_Data extends ActionBarActivity {
             } else if (picturePath.endsWith(".jpg") || picturePath.endsWith(".JPG")) {
                 Toast.makeText(Enter_Data.this, "this image cannot be used please choose another one or use the default", Toast.LENGTH_LONG).show();
 
-            } }
-        else if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
-                Bitmap photo = (Bitmap) data.getExtras().get("data");
-
-                String imgString = Base64.encodeToString(getBytesFromBitmap(photo),
-                        Base64.NO_WRAP);
-                imv.setImageBitmap(photo);
-                photosend = imgString;
-
             }
+        } else if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
 
+            String imgString = Base64.encodeToString(getBytesFromBitmap(photo),
+                    Base64.NO_WRAP);
+            imv.setImageBitmap(photo);
+            photosend = imgString;
 
-
+        }
 
 
     }

@@ -19,7 +19,9 @@ public class DataDetails {
     String serial;
 
 
-    public DataDetails(String name, String rakmManzl, String street, String floor, String homenumber, String description, String anotherAdd, String baba, String mama, String phone, String birthday, String photo, String serial) {
+    public DataDetails(String name, String rakmManzl, String street, String floor,
+                       String homenumber, String description, String anotherAdd, String baba,
+                       String mama, String phone, String birthday, String photo, String serial) {
         Name = name;
         RakmManzl = rakmManzl;
         Street = street;

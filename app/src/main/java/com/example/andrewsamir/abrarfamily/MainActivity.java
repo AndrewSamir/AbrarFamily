@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         g.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(MainActivity.this, Kash_List.class);
+                Intent in = new Intent(MainActivity.this, KashfList.class);
                 startActivity(in);
             }
         });

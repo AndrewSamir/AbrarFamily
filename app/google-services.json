@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "426574074048",
+    "firebase_url": "https://abrar-family.firebaseio.com",
+    "project_id": "abrar-family",
+    "storage_bucket": "abrar-family.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426574074048:android:ec46a5370eb3b895",
+        "android_client_info": {
+          "package_name": "com.example.andrewsamir.abrarfamily"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "426574074048-qt6g6spqbpu65bfmuv0qc245dcu2mlco.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAQVWD9ZKuizelGm94qU97EPY92Uy45CI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
