@@ -26,61 +26,79 @@
             android:id="@+id/button"
             android:layout_width="fill_parent"
             android:layout_height="0px"
-            android:layout_margin="8sp"
+
+            android:layout_marginBottom="5sp"
+            android:layout_marginLeft="40sp"
+            android:layout_marginRight="40sp"
+            android:layout_marginTop="5sp"
             android:layout_weight="1"
             android:background="@drawable/rect"
             android:text="اضافه"
             android:textColor="#fff"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:textStyle="italic" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="fill_parent"
             android:layout_height="0px"
-            android:layout_margin="8sp"
+
+            android:layout_marginBottom="5sp"
+            android:layout_marginLeft="40sp"
+            android:layout_marginRight="40sp"
+            android:layout_marginTop="5sp"
             android:layout_weight="1"
             android:background="@drawable/rect"
             android:text="الكشف"
             android:textColor="#fff"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:textStyle="italic" />
 
         <Button
             android:id="@+id/buttonabsent"
             android:layout_width="fill_parent"
             android:layout_height="0px"
-            android:layout_margin="8sp"
+
+            android:layout_marginBottom="5sp"
+            android:layout_marginLeft="40sp"
+            android:layout_marginRight="40sp"
+            android:layout_marginTop="5sp"
             android:layout_weight="1"
             android:background="@drawable/rect"
             android:text="تسجيل الغياب"
             android:textColor="#fff"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:textStyle="italic" />
 
         <Button
             android:id="@+id/buttoneftkad"
             android:layout_width="fill_parent"
             android:layout_height="0px"
-            android:layout_margin="8sp"
+
+            android:layout_marginBottom="5sp"
+            android:layout_marginLeft="40sp"
+            android:layout_marginRight="40sp"
+            android:layout_marginTop="5sp"
             android:layout_weight="1"
             android:background="@drawable/rect"
             android:text="الافتقاد"
             android:textColor="#fff"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:textStyle="italic" />
 
         <Button
             android:id="@+id/buttonAbsentShow"
             android:layout_width="fill_parent"
             android:layout_height="0px"
-            android:layout_margin="8sp"
-            android:layout_marginBottom="44dp"
+            android:layout_marginBottom="5sp"
+            android:layout_marginLeft="40sp"
+            android:layout_marginRight="40sp"
+            android:layout_marginTop="5sp"
             android:layout_weight="1"
             android:background="@drawable/rect"
             android:text="الغياب"
             android:textColor="#fff"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:textStyle="italic" />
 
     </LinearLayout>

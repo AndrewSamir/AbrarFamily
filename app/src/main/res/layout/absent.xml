@@ -1,55 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
+        android:id="@+id/textView4"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="فصل القديس ابيب"
-        android:padding="15dp"
-        android:id="@+id/textView4"
+        android:layout_gravity="center_horizontal"
         android:gravity="center"
-        android:layout_gravity="center_horizontal"/>
+        android:padding="15dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/textviewDate"
+        android:gravity="center" />
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_weight="90"
-        android:layout_height="fill_parent">
-<LinearLayout
-    android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="90">
 
-    android:orientation="vertical"
-    android:padding="20dp"
-    android:id="@+id/linid"
-    android:layout_height="fill_parent">
+        <LinearLayout
+            android:id="@+id/linid"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="right"
+            android:orientation="vertical"
 
-</LinearLayout>
+            android:padding="20sp"></LinearLayout>
     </ScrollView>
-<LinearLayout
-    android:layout_width="fill_parent"
-    android:weightSum="100"
-    android:orientation="horizontal"
 
-    android:layout_weight="3"
-    android:layout_height="wrap_content">
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_weight="50"
-        android:padding="15dp"
-        android:text="DONE"
-        android:id="@+id/buttondone" />
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:orientation="horizontal"
+        android:weightSum="100">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:padding="15dp"
-        android:layout_height="fill_parent"
-        android:layout_weight="50"
-        android:text="CANCEL"
-        android:id="@+id/buttoncancelabsent"
-        android:layout_gravity="center_horizontal" />
-</LinearLayout>
+        <Button
+            android:id="@+id/buttondone"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="50"
+            android:padding="15dp"
+            android:text="DONE" />
+
+        <Button
+            android:id="@+id/buttoncancelabsent"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="50"
+            android:padding="15dp"
+            android:text="CANCEL" />
+    </LinearLayout>
 </LinearLayout>

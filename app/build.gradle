@@ -6,7 +6,7 @@ android {
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.example.andrewsamir.abrarfamily"
-        minSdkVersion 11
+        minSdkVersion 9
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -34,5 +34,6 @@ dependencies {
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.firebase:firebase-client-android:2.5.2'
 
+    compile 'com.google.android.gms:play-services-appindexing:9.0.0'
 }
 apply plugin: 'com.google.gms.google-services'

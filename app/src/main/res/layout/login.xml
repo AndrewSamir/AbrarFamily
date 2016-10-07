@@ -2,19 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_margin="5dp"
-    android:background="@drawable/rect"
+    android:background="#9CCC65"
+    android:layout_gravity="center"
+    android:gravity="center"
     android:orientation="vertical">
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
             android:orientation="vertical"
             android:padding="30sp">
 
@@ -28,6 +27,8 @@
                 android:hint="UserName"
                 android:paddingBottom="15sp"
                 android:paddingLeft="12sp"
+                android:textColor="#fff"
+                android:singleLine="true"
                 android:paddingTop="15sp" />
 
             <EditText
@@ -38,6 +39,7 @@
                 android:layout_marginBottom="10sp"
                 android:background="@drawable/rect"
                 android:ems="10"
+                android:textColor="#fff"
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:paddingBottom="15sp"
@@ -49,6 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
+                android:textColor="#fff"
                 android:text="Remember me" />
 
             <Button
@@ -58,6 +61,7 @@
                 android:layout_marginTop="20sp"
                 android:background="@drawable/rect"
                 android:padding="10sp"
+                android:textColor="#fff"
                 android:text="LogIn"
                 android:textSize="30sp" />
 

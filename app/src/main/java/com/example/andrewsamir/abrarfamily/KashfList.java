@@ -1,10 +1,17 @@
 package com.example.andrewsamir.abrarfamily;
 
+
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.andrewsamir.abrarfamily.adaptors.DBhelper;
@@ -30,10 +37,11 @@ public class KashfList extends AppCompatActivity {
     ArrayList<Name> np = new ArrayList<>();
     DBhelper myDB;
     int x = 1;
+    SharedPreferences jsonData;
 
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.kashf_list_view);
 
@@ -41,20 +49,60 @@ public class KashfList extends AppCompatActivity {
         lv.setAdapter(na);
 
         myDB = new DBhelper(this);
-        final SharedPreferences jsonData = getApplicationContext().getSharedPreferences("jsonData", MODE_PRIVATE);
+        jsonData = getApplicationContext().getSharedPreferences("jsonData", MODE_PRIVATE);
+
+        setDataToList();
+
+      //  getDataFromFirebase();
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent showData = new Intent(KashfList.this, Data_Show.class);
+                Log.d("position",position+""+datad.get(position).getName());
+                showData.putExtra("position", position);
+                startActivity(showData);
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.refresh, menu);
+
+        return true;
+    }
 
 
-        // Get a reference to our posts
-        Firebase ref = new Firebase("https://abrar-family.firebaseio.com/fsol/"+jsonData.getString("fasl","default"));
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-// Attach an listener to read the data at our posts reference
+        switch (item.getItemId()) {
+
+
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+
+            case R.id.action_add:
+                Intent in = new Intent(KashfList.this, Enter_Data.class);
+                startActivity(in);
+
+            default:
+                return true;
+        }
+    }
+
+    private boolean getDataFromFirebase() {
+
+        Firebase ref = new Firebase("https://abrar-family.firebaseio.com/fsol/" + jsonData.getString("fasl", "default"));
 
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 myDB.deleteAll();
                 System.out.println(snapshot.getValue());
-
 
 
                 Iterable<DataSnapshot> myChildren = snapshot.getChildren();
@@ -74,7 +122,7 @@ public class KashfList extends AppCompatActivity {
                             myChild.child("phone").getValue().toString(),
                             myChild.child("birthdate").getValue().toString(),
                             myChild.child("image").getValue().toString(),
-                            "12"));
+                            myChild.getKey()));
 
 
                     boolean add = myDB.ADD_KASHF(myChild.child("name").getValue().toString(),
@@ -94,35 +142,10 @@ public class KashfList extends AppCompatActivity {
                     );
 
 
-
                 }
+                setDataToList();
 
 
-                Cursor c = myDB.getKashfList();
-
-                if (c.moveToFirst()) {
-                    np.clear();
-
-                    do {
-                        np.add(new Name(c.getString(1), c.getString(4), c.getString(7), c.getString(2), c.getString(13)));
-                        // pos.add(Integer.parseInt(c.getString(5))-1);
-                    } while (c.moveToNext());
-                }
-                na = new NameAdapter(np, KashfList.this);
-
-
-                lv.setAdapter(na);
-
-
-
-                /*np.clear();
-                for (DataDetails d : datad) {
-                    np.add(new Name(d.getName(), d.getPhoto(), d.getRakmManzl(), d.getStreet(), "11"));
-                }
-
-                na = new NameAdapter(np, KashfList.this);
-
-                lv.setAdapter(na);*/
             }
 
             @Override
@@ -130,7 +153,38 @@ public class KashfList extends AppCompatActivity {
                 System.out.println("The read failed: " + firebaseError.getMessage());
             }
         });
-
-
+        return true;
     }
+
+    private boolean setDataToList() {
+
+        Cursor c = myDB.getKashfList();
+
+        if (c.moveToFirst()) {
+            np.clear();
+
+            do {
+                np.add(new Name(c.getString(1), c.getString(4), c.getString(7), c.getString(2), c.getString(13)));
+                // pos.add(Integer.parseInt(datePicker.getString(5))-1);
+                datad.add(new DataDetails(c.getString(1),
+                        c.getString(3),
+                        c.getString(2),
+                        c.getString(6),
+                        c.getString(7),
+                        c.getString(11),
+                        c.getString(12),
+                        c.getString(8),
+                        c.getString(9),
+                        c.getString(10),
+                        c.getString(5),
+                        c.getString(4),
+                        c.getString(13)));
+            } while (c.moveToNext());
+        }
+        na = new NameAdapter(np, KashfList.this);
+        lv.setAdapter(na);
+        return true;
+    }
+
+
 }

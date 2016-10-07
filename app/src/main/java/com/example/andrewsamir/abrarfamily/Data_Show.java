@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.andrewsamir.abrarfamily.data.DataDetails;
 
@@ -22,7 +23,7 @@ import com.example.andrewsamir.abrarfamily.data.DataDetails;
  * Created by Andrew Samir on 1/30/2016.
  */
 public class Data_Show extends ActionBarActivity {
-Kash_List kl;
+KashfList kashfList;
     DataDetails d;
      int  pos;
     @Override
@@ -44,14 +45,14 @@ Kash_List kl;
         RelativeLayout lindesc= (RelativeLayout) findViewById(R.id.Lindesc);
 
         ImageView imv= (ImageView) findViewById(R.id.imageView2);
-        imv.setImageBitmap(StringToBitMap(kl.datad.get(pos).getPhoto()));
+        imv.setImageBitmap(StringToBitMap(kashfList.datad.get(pos).getPhoto()));
 
-        String[] names=kl.datad.get(pos).getName().split(" ");
+        String[] names= kashfList.datad.get(pos).getName().split(" ");
 
         TextView name= (TextView) findViewById(R.id.textViewshowname);
-        //name.setText(kl.datad.get(pos).getName());
+        //name.setText(kashfList.datad.get(pos).getName());
         name.setText(names[0]);
-        String last=kl.datad.get(pos).getName().substring(names[0].length());
+        String last= kashfList.datad.get(pos).getName().substring(names[0].length());
 
 
         TextView lastname= (TextView) findViewById(R.id.textViewlastname);
@@ -59,31 +60,31 @@ Kash_List kl;
 
 
         TextView add= (TextView) findViewById(R.id.textViewshowrakmmanzl);
-        add.setText(kl.datad.get(pos).getRakmManzl()+" شارع  "+kl.datad.get(pos).getStreet());
+        add.setText(kashfList.datad.get(pos).getRakmManzl()+" شارع  "+ kashfList.datad.get(pos).getStreet());
 
         TextView floor= (TextView) findViewById(R.id.textViewshowfloor);
-        floor.setText("الدور  "+kl.datad.get(pos).getFloor());
+        floor.setText("الدور  "+ kashfList.datad.get(pos).getFloor());
 
         TextView homen= (TextView) findViewById(R.id.textViewshowhomen);
-        homen.setText(" شقه  "+kl.datad.get(pos).getHomenumber());
+        homen.setText(" شقه  "+ kashfList.datad.get(pos).getHomenumber());
 
         TextView baba= (TextView) findViewById(R.id.textViewshowbaba);
-        baba.setText(kl.datad.get(pos).getBaba());
+        baba.setText(kashfList.datad.get(pos).getBaba());
 
         TextView mama= (TextView) findViewById(R.id.textViewshowmama);
-        mama.setText(kl.datad.get(pos).getMama());
+        mama.setText(kashfList.datad.get(pos).getMama());
 
         TextView phone= (TextView) findViewById(R.id.textViewshowphone);
-        phone.setText(kl.datad.get(pos).getPhone());
+        phone.setText(kashfList.datad.get(pos).getPhone());
 
         TextView birth= (TextView) findViewById(R.id.textViewshowbirthday);
-        birth.setText(kl.datad.get(pos).getBirthday());
+        birth.setText(kashfList.datad.get(pos).getBirthday());
 
         TextView desc= (TextView) findViewById(R.id.textViewshowdesc);
-        desc.setText(kl.datad.get(pos).getDescription());
+        desc.setText(kashfList.datad.get(pos).getDescription());
 
         TextView another= (TextView) findViewById(R.id.textViewshowanotheraddr);
-        another.setText(kl.datad.get(pos).getAnotherAdd());
+        another.setText(kashfList.datad.get(pos).getAnotherAdd());
 
         ImageButton callbaba= (ImageButton) findViewById(R.id.buttoncallbaba);
         ImageButton callmama= (ImageButton) findViewById(R.id.buttoncallmama);
@@ -92,7 +93,7 @@ Kash_List kl;
         callbaba.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String   posted_by = kl.datad.get(pos).getBaba();
+                String   posted_by = kashfList.datad.get(pos).getBaba();
                 String uri = "tel:" + posted_by.trim() ;
                 Intent in =new Intent(Intent.ACTION_DIAL);
                 in.setData(Uri.parse(uri));
@@ -103,7 +104,7 @@ Kash_List kl;
         callmama.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String   posted_by = kl.datad.get(pos).getMama();
+                String   posted_by = kashfList.datad.get(pos).getMama();
                 String uri = "tel:" + posted_by.trim() ;
                 Intent in =new Intent(Intent.ACTION_DIAL);
                 in.setData(Uri.parse(uri));
@@ -115,10 +116,10 @@ Kash_List kl;
             @Override
             public void onClick(View v) {
                 String   posted_by;
-                if(kl.datad.get(pos).getPhone().length()==8)
-                    posted_by = "02"+kl.datad.get(pos).getPhone();
+                if(kashfList.datad.get(pos).getPhone().length()==8)
+                    posted_by = "02"+ kashfList.datad.get(pos).getPhone();
                 else
-                    posted_by=kl.datad.get(pos).getPhone();
+                    posted_by= kashfList.datad.get(pos).getPhone();
                 String uri = "tel:" + posted_by.trim() ;
                 Intent in =new Intent(Intent.ACTION_DIAL);
                 in.setData(Uri.parse(uri));
@@ -126,22 +127,22 @@ Kash_List kl;
             }
         });
 
-        if(kl.datad.get(pos).getBaba().equals("null"))
+        if(kashfList.datad.get(pos).getBaba().equals("null"))
             linbaba.setVisibility(View.GONE);
 
-        if(kl.datad.get(pos).getMama().equals("null"))
+        if(kashfList.datad.get(pos).getMama().equals("null"))
             linmama.setVisibility(View.GONE);
 
-        if(kl.datad.get(pos).getPhone().equals("null"))
+        if(kashfList.datad.get(pos).getPhone().equals("null"))
             linphone.setVisibility(View.GONE);
 
-        if(kl.datad.get(pos).getAnotherAdd().equals("null"))
+        if(kashfList.datad.get(pos).getAnotherAdd().equals("null"))
             lindesc.setVisibility(View.GONE);
 
-        if(kl.datad.get(pos).getDescription().equals("null"))
+        if(kashfList.datad.get(pos).getDescription().equals("null"))
             linother.setVisibility(View.GONE);
 
-        if(kl.datad.get(pos).getBirthday().equals("null"))
+        if(kashfList.datad.get(pos).getBirthday().equals("null"))
             birth.setVisibility(View.GONE);
     }
 
@@ -175,8 +176,9 @@ Kash_List kl;
                 Intent edit=new Intent(Data_Show.this,Edit_Data.class);
               //  edit.putExtra("position_edit", Integer.parseInt(pos));
                 edit.putExtra("position_edit",pos);
+                Toast.makeText(Data_Show.this,pos+"",Toast.LENGTH_SHORT).show();
 
-                startActivity(edit);
+              startActivity(edit);
                 return true;
         }
 

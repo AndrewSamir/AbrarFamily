@@ -17,7 +17,7 @@ public class DataDetails {
     String phone;
     String birthday;
     String serial;
-
+    String photo;
 
     public DataDetails(String name, String rakmManzl, String street, String floor,
                        String homenumber, String description, String anotherAdd, String baba,
@@ -37,7 +37,7 @@ public class DataDetails {
         this.photo = photo;
     }
 
-    String photo;
+
 
     public String getSerial() {
         return serial;

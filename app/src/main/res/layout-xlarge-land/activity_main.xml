@@ -31,7 +31,7 @@
             android:background="@drawable/rect"
             android:text="اضافه"
             android:textColor="#fff"
-            android:textSize="30dp"
+            android:textSize="50dp"
             android:textStyle="italic" />
 
         <Button
@@ -43,7 +43,7 @@
             android:background="@drawable/rect"
             android:text="الكشف"
             android:textColor="#fff"
-            android:textSize="30dp"
+            android:textSize="50dp"
             android:textStyle="italic" />
 
         <Button
@@ -55,7 +55,7 @@
             android:background="@drawable/rect"
             android:text="تسجيل الغياب"
             android:textColor="#fff"
-            android:textSize="30dp"
+            android:textSize="50dp"
             android:textStyle="italic" />
 
         <Button
@@ -67,7 +67,7 @@
             android:background="@drawable/rect"
             android:text="الافتقاد"
             android:textColor="#fff"
-            android:textSize="30dp"
+            android:textSize="50dp"
             android:textStyle="italic" />
 
         <Button
@@ -80,7 +80,7 @@
             android:background="@drawable/rect"
             android:text="الغياب"
             android:textColor="#fff"
-            android:textSize="30dp"
+            android:textSize="50dp"
             android:textStyle="italic" />
 
     </LinearLayout>

@@ -55,7 +55,7 @@ public class Enter_Data extends ActionBarActivity {
 
     private SimpleDateFormat dateFormatter;
 
-     boolean again=false;
+    boolean again = false;
 
     String date = "null";
     String name = null;
@@ -166,79 +166,67 @@ public class Enter_Data extends ActionBarActivity {
         buttonSendData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isOnline()) {
+                if (true) {
 
-                    if (ename.getText().toString().trim().length() == 0)
-                        name = "null";
-                    else
-                        name = ename.getText().toString();
+                    try {
+                        if (ename.getText().toString().trim().length() == 0)
+                            name = "null";
+                        else
+                            name = ename.getText().toString();
 
-                    if (estreet.getText().toString().trim().length() == 0)
-                        street = "null";
-                    else
-                        street = estreet.getText().toString();
+                        if (estreet.getText().toString().trim().length() == 0)
+                            street = "null";
+                        else
+                            street = estreet.getText().toString();
 
-                    if (ehome.getText().toString().trim().length() == 0)
-                        home = "null";
-                    else
-                        home = ehome.getText().toString();
+                        if (ehome.getText().toString().trim().length() == 0)
+                            home = "null";
+                        else
+                            home = ehome.getText().toString();
 
-                    if (ehomeN.getText().toString().trim().length() == 0)
-                        homeN = "0";
-                    else
-                        homeN = ehomeN.getText().toString();
+                        if (ehomeN.getText().toString().trim().length() == 0)
+                            homeN = "null";
+                        else
+                            homeN = ehomeN.getText().toString();
 
-                    if (efloor.getText().toString().trim().length() == 0)
-                        floor = "null";
-                    else
-                        floor = efloor.getText().toString();
+                        if (efloor.getText().toString().trim().length() == 0)
+                            floor = "null";
+                        else
+                            floor = efloor.getText().toString();
 
-                    if (edesc.getText().toString().trim().length() == 0)
-                        desc = "null";
-                    else
-                        desc = edesc.getText().toString();
+                        if (edesc.getText().toString().trim().length() == 0)
+                            desc = "null";
+                        else
+                            desc = edesc.getText().toString();
 
-                    if (eanother.getText().toString().trim().length() == 0)
-                        another = "null";
-                    else
-                        another = eanother.getText().toString();
+                        if (eanother.getText().toString().trim().length() == 0)
+                            another = "null";
+                        else
+                            another = eanother.getText().toString();
 
-                    if (ebaba.getText().toString().trim().length() == 0)
-                        babamob = "null";
-                    else if (ebaba.getText().toString().length() == 11)
-                        babamob = ebaba.getText().toString().substring(0, 4) + " " + ebaba.getText().toString().substring(4, 7) + " " + ebaba.getText().toString().substring(7, 11);
-                    else
-                        babamob = ebaba.getText().toString();
+                        if (ebaba.getText().toString().trim().length() == 0)
+                            babamob = "null";
+                        else
+                            babamob = ebaba.getText().toString();
 
-                    if (emama.getText().toString().trim().length() == 0)
-                        mamamob = "null";
-                    else if (emama.getText().toString().length() == 11)
-                        mamamob = emama.getText().toString().substring(0, 4) + " " + emama.getText().toString().substring(4, 7) + " " + emama.getText().toString().substring(7, 11);
+                        if (emama.getText().toString().trim().length() == 0)
+                            mamamob = "null";
 
-                    else
-                        mamamob = emama.getText().toString();
+                        else
+                            mamamob = emama.getText().toString();
 
-                    if (ephone.getText().toString().trim().length() == 0)
-                        phone = "null";
-                    else
-                        phone = ephone.getText().toString();
+                        if (ephone.getText().toString().trim().length() == 0)
+                            phone = "null";
+                        else
+                            phone = ephone.getText().toString();
+                    } finally {
+                        again = true;
+                        postData();
+                        Intent gohome = new Intent(Enter_Data.this, MainActivity.class);
+                        startActivity(gohome);
+                    }
 
-                    Thread t = new Thread(new Runnable() {
-                        @Override
-                        public void run() {
 
-                            again=true;
-                            postData();
-
-                        }
-                    });
-                    t.start();
-
-                    Intent gohome = new Intent(Enter_Data.this, MainActivity.class);
-                    gohome.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
-                    finish();
-                    startActivity(gohome);
                 } else
                     Toast.makeText(Enter_Data.this, "please make sure of your Internet connection then try again ", Toast.LENGTH_LONG).show();
 
@@ -246,7 +234,7 @@ public class Enter_Data extends ActionBarActivity {
 
         });
 
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+       // getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
 
     }
@@ -257,39 +245,38 @@ public class Enter_Data extends ActionBarActivity {
 
         final Firebase ref = new Firebase("https://abrar-family.firebaseio.com/");
 
-        Query queryRef = ref.child("fsol").child(jsonData.getString("fasl","default"));
+        Query queryRef = ref.child("fsol").child(jsonData.getString("fasl", "default"));
         queryRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
 
-                String id="0";
-                Iterable<DataSnapshot> myChildren =  snapshot.getChildren();
+                String id = "0";
+                Iterable<DataSnapshot> myChildren = snapshot.getChildren();
                 while (myChildren.iterator().hasNext()) {
 
                     myChild = myChildren.iterator().next();
-                    id=myChild.getKey();
+                    id = myChild.getKey();
                 }
                 try {
                     long i = Long.parseLong(id);
-                   // i = snapshot.getChildrenCount();
+                    // i = snapshot.getChildrenCount();
 
-                    Toast.makeText(Enter_Data.this, i + 1 + "", Toast.LENGTH_SHORT).show();
 
-                    if(again) {
-                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("name").setValue(name);
-                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("homeNo").setValue(home);
-                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("street").setValue(street);
-                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("floor").setValue(floor);
-                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("flat").setValue(homeN);
-                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("description").setValue(desc);
-                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("anotherAdd").setValue(another);
-                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("papa").setValue(babamob);
-                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("mama").setValue(mamamob);
-                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("phone").setValue(phone);
-                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("image").setValue(photosend);
-                        ref.child("fsol").child(jsonData.getString("fasl","default")).child(i + 1 + "").child("birthdate").setValue(date);
+                    if (again) {
+                        ref.child("fsol").child(jsonData.getString("fasl", "default")).child(i + 1 + "").child("name").setValue(name);
+                        ref.child("fsol").child(jsonData.getString("fasl", "default")).child(i + 1 + "").child("homeNo").setValue(home);
+                        ref.child("fsol").child(jsonData.getString("fasl", "default")).child(i + 1 + "").child("street").setValue(street);
+                        ref.child("fsol").child(jsonData.getString("fasl", "default")).child(i + 1 + "").child("floor").setValue(floor);
+                        ref.child("fsol").child(jsonData.getString("fasl", "default")).child(i + 1 + "").child("flat").setValue(homeN);
+                        ref.child("fsol").child(jsonData.getString("fasl", "default")).child(i + 1 + "").child("description").setValue(desc);
+                        ref.child("fsol").child(jsonData.getString("fasl", "default")).child(i + 1 + "").child("anotherAdd").setValue(another);
+                        ref.child("fsol").child(jsonData.getString("fasl", "default")).child(i + 1 + "").child("papa").setValue(babamob);
+                        ref.child("fsol").child(jsonData.getString("fasl", "default")).child(i + 1 + "").child("mama").setValue(mamamob);
+                        ref.child("fsol").child(jsonData.getString("fasl", "default")).child(i + 1 + "").child("phone").setValue(phone);
+                        ref.child("fsol").child(jsonData.getString("fasl", "default")).child(i + 1 + "").child("image").setValue(photosend);
+                        ref.child("fsol").child(jsonData.getString("fasl", "default")).child(i + 1 + "").child("birthdate").setValue(date);
 
-                        again=false;
+                        again = false;
                     }
 
                 } catch (Exception e) {
@@ -304,37 +291,6 @@ public class Enter_Data extends ActionBarActivity {
         });
 
 
-
-
-        /*try {
-            String fullUrl = "https://docs.google.com/forms/d/1fU7L5ov51Vozf7UCkMqikmjlcAYzl-HnDNI9FwuuUkA/formResponse";
-            HttpRequest mReq = new HttpRequest();
-
-            SharedPreferences jsonData = getApplicationContext().getSharedPreferences("jsonData", MODE_PRIVATE);
-
-
-            Random rand=new Random();
-            int g=rand.nextInt(99999999);
-            String data = "entry_1159314701=" + URLEncoder.encode(jsonData.getString("name","error")) + "&" +
-                    "entry_264438255=" + URLEncoder.encode(jsonData.getString("fasl","error"))+"&"+
-                    "entry_873042066=" + URLEncoder.encode(name) + "&" +
-                    "entry_2083578039=" + URLEncoder.encode(homeN)+"&"+
-                    "entry_1455227551=" + URLEncoder.encode(street) + "&" +
-                    "entry_360866657=" + URLEncoder.encode(floor)+"&"+
-                    "entry_192517176=" + URLEncoder.encode(home) + "&" +
-                    "entry_1375216006=" + URLEncoder.encode(desc)+"&"+
-                    "entry_1756435469=" + URLEncoder.encode(another) + "&" +
-                    "entry_683672125=" + URLEncoder.encode(babamob)+"&"+
-                    "entry_2019928690=" + URLEncoder.encode(mamamob) + "&" +
-                    "entry_910476216=" + URLEncoder.encode(phone)+"&"+
-                    "entry_1599247433=" + URLEncoder.encode(photosend)+"&"+
-                    "entry_531773961=" + URLEncoder.encode(Integer.toString(g))+"&"+
-                    "entry_1283977554="+URLEncoder.encode(date);
-            String response = mReq.sendPost(fullUrl, data);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Toast.makeText(Enter_Data.this,"errrrrror",Toast.LENGTH_LONG).show();
-        }*/
     }
 
     public byte[] getBytesFromBitmap(Bitmap bitmap) {
@@ -362,16 +318,12 @@ public class Enter_Data extends ActionBarActivity {
             ImageView imageView = (ImageView) findViewById(R.id.imgView);*/
 
             Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
-            if (picturePath.endsWith(".png") || picturePath.endsWith(".jpeg") || picturePath.endsWith(".PNG") || picturePath.endsWith(".JPEG")) {
-                imv.setImageBitmap(bitmap);
-                String imgString = Base64.encodeToString(getBytesFromBitmap(bitmap),
-                        Base64.NO_WRAP);
+            imv.setImageBitmap(bitmap);
+            String imgString = Base64.encodeToString(getBytesFromBitmap(bitmap),
+                    Base64.NO_WRAP);
 
-                photosend = imgString;
-            } else if (picturePath.endsWith(".jpg") || picturePath.endsWith(".JPG")) {
-                Toast.makeText(Enter_Data.this, "this image cannot be used please choose another one or use the default", Toast.LENGTH_LONG).show();
+            photosend = imgString;
 
-            }
         } else if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
 
@@ -407,10 +359,4 @@ public class Enter_Data extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public boolean isOnline() {
-        ConnectivityManager cm =
-                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnectedOrConnecting();
-    }
 }

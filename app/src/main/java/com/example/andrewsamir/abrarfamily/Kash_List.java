@@ -71,7 +71,7 @@ public class Kash_List extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-        sv = (SearchView) findViewById(R.id.searchv);
+       /* sv = (SearchView) findViewById(R.id.searchv);
         sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String text) {
@@ -115,13 +115,14 @@ public class Kash_List extends ActionBarActivity {
 
                 return true;
             }
-        });
+        });*/
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
 
         lv = (ListView) findViewById(R.id.listViewnames);
         lv.setAdapter(na);
+
 
 
         SharedPreferences jsonData = getApplicationContext().getSharedPreferences("jsonData", MODE_PRIVATE);
@@ -138,7 +139,7 @@ public class Kash_List extends ActionBarActivity {
         }
     }
 
-    @Override
+/*    @Override
     protected void onRestart() {
         super.onRestart();
         if (state) {
@@ -146,7 +147,7 @@ public class Kash_List extends ActionBarActivity {
             sv.clearFocus();
             iniList();
         }
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -233,6 +234,17 @@ public class Kash_List extends ActionBarActivity {
                                 na = new NameAdapter(np, Kash_List.this);
 
                                 lv.setAdapter(na);
+                                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                        Toast.makeText(Kash_List.this,"fd",Toast.LENGTH_SHORT).show();
+                                        Intent showData =new Intent(Kash_List.this,Data_Show.class);
+                                        showData.putExtra("position",position);
+                                        startActivity(showData);
+                                    }
+                                });
+
 
                             } catch (Exception e) {
 

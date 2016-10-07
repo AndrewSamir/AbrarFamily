@@ -5,31 +5,31 @@
     android:layout_width="match_parent"
 
     android:layout_height="match_parent">
-
+<!--
 <SearchView
     android:layout_width="fill_parent"
     android:id="@+id/searchv"
     android:queryHint="Search..."
     android:layout_height="wrap_content">
 
-</SearchView>
+</SearchView>-->
 
-<RelativeLayout
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content">
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:id="@+id/listViewnames" />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/listViewnames" />
 
-    <ProgressBar
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <ProgressBar
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-        android:id="@+id/progressBar"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:indeterminate="false" />
-</RelativeLayout>
+            android:id="@+id/progressBar"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:indeterminate="false" />
+    </RelativeLayout>
 </LinearLayout>

@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/action_remove"
-        android:title="Remove All Data"
+        android:title="Logout"
         app:showAsAction="never"/>
 
 </menu>
