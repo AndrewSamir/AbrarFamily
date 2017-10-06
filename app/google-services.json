@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "426574074048-ssc60bhbnqgfp95g9a51t1aitafnnt8d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.andrewsamir.abrarfamily",
+            "certificate_hash": "f0b33f4178f95ce709b043bcf576aca41b8c419b"
+          }
+        },
+        {
           "client_id": "426574074048-qt6g6spqbpu65bfmuv0qc245dcu2mlco.apps.googleusercontent.com",
           "client_type": 3
         }
