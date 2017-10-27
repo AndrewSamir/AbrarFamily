@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "815263100531",
+    "firebase_url": "https://st-maregerges-helioplis-angels.firebaseio.com",
+    "project_id": "st-maregerges-helioplis-angels",
+    "storage_bucket": "st-maregerges-helioplis-angels.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:815263100531:android:5ba17655770e496f",
+        "android_client_info": {
+          "package_name": "service.andrewsamir.maregerges.helopoilis.angels.family"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "815263100531-qu6mt6ehgnji9k9f8gnhp2bqpr3il8oi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABUlLVzsg0Yi62w4wlBtJQODZazd_ofv8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
