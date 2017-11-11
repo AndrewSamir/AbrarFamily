@@ -19,96 +19,96 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
-            android:name="com.service.andrewsamir.main.Activities.LogIn"
+            android:name=".Activities.LogIn"
             android:noHistory="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.service.andrewsamir.main.MainActivity"
+            android:name=".MainActivity"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MainActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.service.andrewsamir.main.Activities.Data_Show"
-            android:parentActivityName="com.service.andrewsamir.main.KashfList">
+            android:name=".Activities.Data_Show"
+            android:parentActivityName=".KashfList">
             <intent-filter>
                 <action android:name="android.intent.action.Data_Show" />
+
                 <category android:name="android.intent.category.default" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.service.andrewsamir.main.KashfList"
-            android:parentActivityName="com.service.andrewsamir.main.MainActivity">
+            android:name=".KashfList"
+            android:parentActivityName=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.Kash_List" />
+
                 <category android:name="android.intent.category.default" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.service.andrewsamir.main.Absent"
+            android:name=".Absent"
             android:noHistory="true"
-            android:parentActivityName="com.service.andrewsamir.main.MainActivity"
+            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.Absent" />
+
                 <category android:name="android.intent.category.default" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.service.andrewsamir.main.Eftkad"
+            android:name=".Eftkad"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.Eftkad" />
+
                 <category android:name="android.intent.category.default" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.service.andrewsamir.main.Absent_list"
+            android:name=".Absent_list"
             android:noHistory="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.Absent_list" />
+
                 <category android:name="android.intent.category.default" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.service.andrewsamir.main.Enter_Data"
-            android:parentActivityName="com.service.andrewsamir.main.Activities.HOME"
+            android:name=".Enter_Data"
+            android:parentActivityName=".Activities.HOME"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.Enter_Data" />
+
                 <category android:name="android.intent.category.default" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.service.andrewsamir.main.Edit_Data"
+            android:name=".Edit_Data"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.Edit_Data" />
+
                 <category android:name="android.intent.category.default" />
             </intent-filter>
         </activity>
 
         <service
-            android:name="com.service.andrewsamir.main.Services.GetData"
+            android:name=".Services.GetData"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name" />
         <!--
@@ -120,41 +120,40 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.service.andrewsamir.main.Birthdate"
-            android:screenOrientation="portrait"
-            android:noHistory="true" />
-
+            android:name=".Birthdate"
+            android:noHistory="true"
+            android:screenOrientation="portrait" />
         <activity
-            android:name="com.service.andrewsamir.main.Activities.HOME"
+            android:name=".Activities.HOME"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.Home" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.service.andrewsamir.main.Activities.SetAbsentActivity"
+            android:name=".Activities.SetAbsentActivity"
             android:label="@string/title_activity_set_absent"
             android:noHistory="true"
+            android:parentActivityName=".Activities.HOME"
             android:screenOrientation="portrait"
-            android:parentActivityName="com.service.andrewsamir.main.Activities.HOME"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.service.andrewsamir.main.Activities.HOME" />
         </activity>
-
         <activity
-            android:name="com.service.andrewsamir.main.Activities.Splash"
+            android:name=".Activities.Splash"
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -163,6 +162,10 @@
             android:name="io.fabric.ApiKey"
             android:value="3b9c7f980f92f6963cd5070716c2b211ac2e0af3" />
 
+        <activity
+            android:name=".DataNewActivity"
+            android:label="@string/title_activity_data_new"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

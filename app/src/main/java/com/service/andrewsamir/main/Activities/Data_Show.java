@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,14 +26,22 @@ import com.service.andrewsamir.main.Singleton.SingletonDataShow;
 /**
  * Created by Andrew Samir on 1/30/2016.
  */
-public class Data_Show extends ActionBarActivity {
+public class Data_Show extends AppCompatActivity {
     // KashfList kashfList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.show_data);
+        setContentView(R.layout.activity_data_new);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
 
         RelativeLayout linphone = (RelativeLayout) findViewById(R.id.callphone);

@@ -32,5 +32,6 @@
     <string name="birthdates">اعياد الميلاد</string>
     <string name="exit">الخروج</string>
     <string name="signout">تسجيل الخروج</string>
+    <string name="title_activity_data_new">Details</string>
 
 </resources>
