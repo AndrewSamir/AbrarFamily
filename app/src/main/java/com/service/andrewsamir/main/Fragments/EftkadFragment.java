@@ -1,4 +1,4 @@
-package com.service.andrewsamir.abrarfamily.Fragments;
+package com.service.andrewsamir.main.Fragments;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -19,17 +19,17 @@ import android.widget.ListView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.service.andrewsamir.abrarfamily.Activities.Data_Show;
-import com.service.andrewsamir.abrarfamily.R;
-import com.service.andrewsamir.abrarfamily.Singleton.SingletonDataShow;
-import com.service.andrewsamir.abrarfamily.adaptors.DBhelper;
-import com.service.andrewsamir.abrarfamily.adaptors.NameAdapter;
-import com.service.andrewsamir.abrarfamily.data.Name;
+import com.service.andrewsamir.main.Activities.Data_Show;
+import com.service.andrewsamir.main.R;
+import com.service.andrewsamir.main.Singleton.SingletonDataShow;
+import com.service.andrewsamir.main.adaptors.DBhelper;
+import com.service.andrewsamir.main.adaptors.NameAdapter;
+import com.service.andrewsamir.main.data.Name;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import static com.service.andrewsamir.abrarfamily.Fragments.KashfFragment.kashfLists;
+import static com.service.andrewsamir.main.Fragments.KashfFragment.kashfLists;
 
 /**
  * Created by andre on 01-Apr-17.
@@ -77,6 +77,7 @@ public class EftkadFragment extends Fragment {
                         } else if (items[item].equals(getString(R.string.add_eftkad_date))) {
 
                             createDialog(kashfLists.get(pos.get(position)).getKey(), position);
+
                         }
 
                     }
@@ -195,6 +196,7 @@ public class EftkadFragment extends Fragment {
                 myRef = database.getReference("fsol/" + FirebaseAuth.getInstance().getCurrentUser().getUid() + "/list/" + uuid + "/lastEftkad");
                 myRef.setValue(dateShow);
                 na_eftkad.updateLastEftkadDate(position, dateShow);
+                removeFromEftkadList(position);
                 dialog.dismiss();
 
             }

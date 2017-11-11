@@ -1,4 +1,4 @@
-package com.service.andrewsamir.abrarfamily;
+package com.service.andrewsamir.main;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

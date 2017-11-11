@@ -1,4 +1,4 @@
-package com.service.andrewsamir.abrarfamily;
+package com.service.andrewsamir.main;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -15,10 +15,10 @@ import android.widget.DatePicker;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.service.andrewsamir.abrarfamily.Activities.LogIn;
-import com.service.andrewsamir.abrarfamily.AddToCalendar.CalendarHelper;
-import com.service.andrewsamir.abrarfamily.Services.GetData;
-import com.service.andrewsamir.abrarfamily.adaptors.DBhelper;
+import com.service.andrewsamir.main.Activities.LogIn;
+import com.service.andrewsamir.main.AddToCalendar.CalendarHelper;
+import com.service.andrewsamir.main.Services.GetData;
+import com.service.andrewsamir.main.adaptors.DBhelper;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;

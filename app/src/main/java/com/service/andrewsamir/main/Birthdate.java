@@ -1,4 +1,4 @@
-package com.service.andrewsamir.abrarfamily;
+package com.service.andrewsamir.main;
 
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -10,8 +10,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.service.andrewsamir.abrarfamily.adaptors.BirthdateAdapter;
-import com.service.andrewsamir.abrarfamily.adaptors.DBhelper;
+import com.service.andrewsamir.main.adaptors.BirthdateAdapter;
+import com.service.andrewsamir.main.adaptors.DBhelper;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ public class Birthdate extends AppCompatActivity {
 
     ListView listView;
     BirthdateAdapter na;
-    ArrayList<com.service.andrewsamir.abrarfamily.data.Birthdate> np = new ArrayList<>();
+    ArrayList<com.service.andrewsamir.main.data.Birthdate> np = new ArrayList<>();
     DBhelper myDB;
 
     @Override
@@ -74,7 +74,7 @@ public class Birthdate extends AppCompatActivity {
                     Log.e("getlongda", c.getLong(3) + "");
                     Log.e("getlongnw", tsLong + "");
                     if (c.getLong(3) < tsLong) {
-                        np.add(new com.service.andrewsamir.abrarfamily.data.Birthdate(c.getString(1), c.getString(2),c.getString(0)));
+                        np.add(new com.service.andrewsamir.main.data.Birthdate(c.getString(1), c.getString(2),c.getString(0)));
                     }
                 }
             } while (c.moveToNext());

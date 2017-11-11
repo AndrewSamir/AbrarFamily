@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "62897952791",
+    "firebase_url": "https://saintmarkshubrataltasata.firebaseio.com",
+    "project_id": "saintmarkshubrataltasata",
+    "storage_bucket": "saintmarkshubrataltasata.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62897952791:android:bfbea7eeecbecc2c",
+        "android_client_info": {
+          "package_name": "service.andrewsamir.maremorkos.shubra.talta.sata"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "62897952791-spnapeutg8j2cjffg97c4khd4t8etmr0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkOP6w9WK8sJiPXOSgrpJ-lObcV1MAH68"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

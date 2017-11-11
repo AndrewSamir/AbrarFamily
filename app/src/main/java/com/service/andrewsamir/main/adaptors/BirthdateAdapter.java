@@ -1,4 +1,4 @@
-package com.service.andrewsamir.abrarfamily.adaptors;
+package com.service.andrewsamir.main.adaptors;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.service.andrewsamir.abrarfamily.R;
-import com.service.andrewsamir.abrarfamily.data.Birthdate;
+import com.service.andrewsamir.main.R;
+import com.service.andrewsamir.main.data.Birthdate;
 
 import java.util.ArrayList;
 

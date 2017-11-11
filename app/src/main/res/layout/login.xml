@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#9CCC65"
     android:layout_gravity="center"
+    android:background="@color/background"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -15,55 +16,57 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="30sp">
+            android:padding="@dimen/login_padding">
 
             <EditText
                 android:id="@+id/editTextusername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="20sp"
+                android:layout_marginBottom="@dimen/login_padding_bottom"
                 android:background="@drawable/rect"
                 android:hint="UserName"
-                android:paddingBottom="15sp"
-                android:paddingLeft="12sp"
-                android:textColor="#fff"
+                android:paddingBottom="@dimen/login_padding_bottom"
+                android:paddingLeft="@dimen/login_padding_bottom"
+                android:paddingTop="@dimen/login_padding_bottom"
                 android:singleLine="true"
-                android:paddingTop="15sp" />
+                android:textColor="#fff"
+                android:textColorHint="#FFFAA1" />
 
             <EditText
                 android:id="@+id/editTextpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="10sp"
+                android:layout_marginBottom="@dimen/login_padding_bottom"
                 android:background="@drawable/rect"
-                android:ems="10"
-                android:textColor="#fff"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:paddingBottom="15sp"
-                android:paddingLeft="12sp"
-                android:paddingTop="15sp" />
+                android:paddingBottom="@dimen/login_padding_bottom"
+                android:paddingLeft="@dimen/login_padding_bottom"
+                android:paddingTop="@dimen/login_padding_bottom"
+                android:textColor="#fff"
+                android:textColorHint="#FFFAA1" />
 
             <CheckBox
-                android:id="@+id/checkBoxuser"
-                android:layout_width="wrap_content"
+                android:id="@+id/chLoginCreatseBirthdateEvents"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:textColor="#fff"
-                android:text="Remember me" />
+                android:text="Create Birthdate events" />
+
 
             <Button
                 android:id="@+id/buttonlogin"
+
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20sp"
+                android:layout_marginTop="40dp"
                 android:background="@drawable/rect"
-                android:padding="10sp"
-                android:textColor="#fff"
+                android:elevation="8dp"
+                android:padding="@dimen/login_padding_button"
                 android:text="LogIn"
-                android:textSize="30sp" />
+                android:textColor="#fff"
+                android:textSize="@dimen/login_text_size" />
 
         </LinearLayout>
     </ScrollView>

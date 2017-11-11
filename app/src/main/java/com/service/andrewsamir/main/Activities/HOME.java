@@ -1,20 +1,20 @@
-package com.service.andrewsamir.abrarfamily.Activities;
+package com.service.andrewsamir.main.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
-import com.service.andrewsamir.abrarfamily.R;
-import com.service.andrewsamir.abrarfamily.adaptors.HomePagerAdapter;
+import com.service.andrewsamir.main.R;
+import com.service.andrewsamir.main.adaptors.DBhelper;
+import com.service.andrewsamir.main.adaptors.HomePagerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -23,16 +23,17 @@ public class HOME extends AppCompatActivity
     public static ViewPager mViewPager;
     static boolean calledAlready = false;
 
+    DBhelper myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-       // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //toolbar.setTitle(getResources().getString(R.string.app_name));
 
         //  setSupportActionBar(toolbar);
-
+        myDB = new DBhelper(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (!calledAlready) {
@@ -85,13 +86,13 @@ public class HOME extends AppCompatActivity
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-       /* ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);*/
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -111,20 +112,26 @@ public class HOME extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
+        if (id == R.id.nav_kashf) {
+
+            mViewPager.setCurrentItem(0);
+
+        } else if (id == R.id.nav_absent) {
+
             mViewPager.setCurrentItem(1);
-        } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_eftkad_list) {
 
-        } else if (id == R.id.nav_manage) {
+            mViewPager.setCurrentItem(2);
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_birthdates) {
 
-        } else if (id == R.id.nav_send) {
+            mViewPager.setCurrentItem(3);
+
+        } else if (id == R.id.nav_sign_out) {
 
             FirebaseAuth.getInstance().signOut();
+            myDB.dropAllTabels();
             startActivity(new Intent(this, LogIn.class));
             finish();
         }

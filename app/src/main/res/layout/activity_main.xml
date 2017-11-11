@@ -6,8 +6,8 @@
     android:background="@color/background"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingLeft="@dimen/activity_h_margin"
+    android:paddingRight="@dimen/activity_h_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity">
 
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="7">
+        android:weightSum="8">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,61 +26,72 @@
             android:id="@+id/button"
             android:layout_width="fill_parent"
             android:layout_height="0px"
-            android:layout_margin="8sp"
+            android:layout_margin="@dimen/main_margin"
             android:layout_weight="1"
             android:background="@drawable/rect"
             android:text="اضافه"
             android:textColor="#fff"
-            android:textSize="30dp"
+            android:textSize="@dimen/main_text_size"
             android:textStyle="italic" />
 
         <Button
             android:id="@+id/button2"
             android:layout_width="fill_parent"
             android:layout_height="0px"
-            android:layout_margin="8sp"
+            android:layout_margin="@dimen/main_margin"
             android:layout_weight="1"
             android:background="@drawable/rect"
             android:text="الكشف"
             android:textColor="#fff"
-            android:textSize="30dp"
+            android:textSize="@dimen/main_text_size"
             android:textStyle="italic" />
 
         <Button
             android:id="@+id/buttonabsent"
             android:layout_width="fill_parent"
             android:layout_height="0px"
-            android:layout_margin="8sp"
+            android:layout_margin="@dimen/main_margin"
             android:layout_weight="1"
             android:background="@drawable/rect"
             android:text="تسجيل الغياب"
             android:textColor="#fff"
-            android:textSize="30dp"
+            android:textSize="@dimen/main_text_size"
             android:textStyle="italic" />
 
         <Button
             android:id="@+id/buttoneftkad"
             android:layout_width="fill_parent"
             android:layout_height="0px"
-            android:layout_margin="8sp"
+            android:layout_margin="@dimen/main_margin"
             android:layout_weight="1"
             android:background="@drawable/rect"
             android:text="الافتقاد"
             android:textColor="#fff"
-            android:textSize="30dp"
+            android:textSize="@dimen/main_text_size"
             android:textStyle="italic" />
 
         <Button
             android:id="@+id/buttonAbsentShow"
             android:layout_width="fill_parent"
             android:layout_height="0px"
-            android:layout_margin="8sp"
-            android:layout_marginBottom="44dp"
+            android:layout_margin="@dimen/main_margin"
             android:layout_weight="1"
             android:background="@drawable/rect"
             android:text="الغياب"
             android:textColor="#fff"
-            android:textSize="30dp"
+            android:textSize="@dimen/main_text_size"
+            android:textStyle="italic" />
+
+        <Button
+            android:id="@+id/buttonBirthdate"
+            android:layout_width="fill_parent"
+            android:layout_height="0px"
+            android:layout_margin="@dimen/main_margin"
+            android:layout_weight="1"
+            android:background="@drawable/rect"
+            android:text="اعياد الميلاد"
+            android:textColor="#fff"
+            android:textSize="@dimen/main_text_size"
             android:textStyle="italic" />
 
     </LinearLayout>

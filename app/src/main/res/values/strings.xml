@@ -1,5 +1,36 @@
 <resources>
     <string name="app_name">Abrar Family</string>
     <string name="MyFirebase_Database">https://abrar-family.firebaseio.com/</string>
+    <string name="title_activity_home">Home</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_tabbed">Tabbed</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_set_absent">الغياب</string>
+
+    <string name="add_to_eftkad">إضافه الى إفتقاد</string>
+    <string name="add_eftkad_date">إضافة تاريخ اخر افتقاد</string>
+    <string name="remove">حذف</string>
+    <string name="remove_from_eftkad_list">حذف من قائمة الافتقاد</string>
+    <string name="title_activity_test_activirt">testActivirt</string>
+    <string name="permstion_need">permstion_need</string>
+    <string name="title_dialog_permtion">title_dialog_permtion</string>
+    <string name="permtion_dialog_reason">permtion_dialog_reason</string>
+    <string name="choose_image">أختر صوره</string>
+    <string name="search">Search</string>
+    <string name="add_new_member">add new member</string>
+    <string name="add_new_absent">add new absent</string>
+    <string name="kashf">الكشف</string>
+    <string name="absent">الغياب</string>
+    <string name="eftkad_list">قائمة الافتقاد</string>
+    <string name="birthdates">اعياد الميلاد</string>
+    <string name="exit">الخروج</string>
+    <string name="signout">تسجيل الخروج</string>
 
 </resources>

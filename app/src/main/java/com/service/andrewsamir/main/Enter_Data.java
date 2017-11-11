@@ -1,20 +1,28 @@
-package com.service.andrewsamir.abrarfamily;
+package com.service.andrewsamir.main;
 
+import android.*;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NavUtils;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
 import android.util.Base64;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -23,19 +31,21 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.service.andrewsamir.abrarfamily.Activities.HOME;
-import com.service.andrewsamir.abrarfamily.data.SendData;
+import com.service.andrewsamir.main.Activities.HOME;
+import com.service.andrewsamir.main.data.SendData;
 import com.firebase.client.DataSnapshot;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.van.fanyu.library.Compresser;
 
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
+import gun0912.tedbottompicker.TedBottomPicker;
 
 /**
  * Created by Andrew Samir on 1/27/2016.
@@ -127,31 +137,17 @@ public class Enter_Data extends ActionBarActivity {
 
 //        Button takephoto= (Button) findViewById(R.id.buttonphoto);
         imv.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
-                final CharSequence[] items = {
-                        "Camera", "Gallery"
-                };
+                if (ContextCompat.checkSelfPermission(Enter_Data.this,android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                    //File write logic here
+                    picImage();
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(Enter_Data.this);
-                builder.setTitle("Choose Photo From ..");
-                builder.setItems(items, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int item) {
-                        // Do something with the selection
-                        //mDoneButton.setText(items[item]);
-                        if (items[item].equals("Camera")) {
-                            Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                            startActivityForResult(cameraIntent, CAMERA_REQUEST);
-                        } else if (items[item].equals("Gallery")) {
-                            Intent i = new Intent(
-                                    Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                } else {
+                    ActivityCompat.requestPermissions(Enter_Data.this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
 
-                            startActivityForResult(i, RESULT_LOAD_IMAGE);
-                        }
-                    }
-                });
-                AlertDialog alert = builder.create();
-                alert.show();
+                }
 
             }
 
@@ -268,8 +264,7 @@ public class Enter_Data extends ActionBarActivity {
 
 
         myRef.push().setValue(sendData);
-        Intent gohome = new Intent(Enter_Data.this, HOME.class);
-        startActivity(gohome);
+        finish();
     }
 
     public byte[] getBytesFromBitmap(Bitmap bitmap) {
@@ -277,43 +272,6 @@ public class Enter_Data extends ActionBarActivity {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 70, stream);
         return stream.toByteArray();
     }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-/*
-            ImageView imageView = (ImageView) findViewById(R.id.imgView);*/
-
-            Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
-            imv.setImageBitmap(bitmap);
-            String imgString = Base64.encodeToString(getBytesFromBitmap(bitmap),
-                    Base64.NO_WRAP);
-
-            photosend = imgString;
-        } else if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-
-            String imgString = Base64.encodeToString(getBytesFromBitmap(photo),
-                    Base64.NO_WRAP);
-            imv.setImageBitmap(photo);
-            photosend = imgString;
-
-        }
-
-
-    }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -325,6 +283,64 @@ public class Enter_Data extends ActionBarActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public static String encodeTobase64(Bitmap image) {
+        Bitmap immagex = image;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        immagex.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
+
+        Log.e("LOOK", imageEncoded);
+        return imageEncoded;
+    }
+
+    private void picImage() {
+        TedBottomPicker bottomSheetDialogFragment = new TedBottomPicker.Builder(Enter_Data.this)
+                .setOnImageSelectedListener(new TedBottomPicker.OnImageSelectedListener() {
+                    @Override
+                    public void onImageSelected(Uri uri) {
+                        compressedFile(uri);
+                    }
+                })
+                //.setPeekHeight(getResources().getDisplayMetrics().heightPixels/2)
+                .setPeekHeight(1200)
+                .setTitle(getString(R.string.choose_image))
+                .create();
+
+        bottomSheetDialogFragment.show(getSupportFragmentManager());
+
+
+    }
+
+    private void compressedFile(final Uri uri) {
+        // imageUri=uri;
+        try {
+            Compresser compresser = new Compresser(50, uri.getPath());
+            compresser.doCompress(new Compresser.CompleteListener() {
+                @Override
+                public void onSuccess(String newPath) {
+                    //Log.e("from", "comprees");
+                    imv.setImageURI(Uri.parse(newPath));
+                    Bitmap bitmap = ((BitmapDrawable) imv.getDrawable()).getBitmap();
+                    photosend = encodeTobase64(bitmap);
+
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            //resume tasks needing this permission
+            picImage();
+        }
     }
 
 

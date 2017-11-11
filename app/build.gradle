@@ -1,15 +1,30 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
 apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion 25
+    buildToolsVersion '25.0.0'
     useLibrary 'org.apache.http.legacy'
     defaultConfig {
-        applicationId "com.example.andrewsamir.abrarfamily"
-        minSdkVersion 9
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        applicationId "com.service.andrewsamir.abrarfamily"
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 11
+        versionName "1.7"
     }
     buildTypes {
         release {
@@ -18,22 +33,56 @@ android {
         }
     }
 
-        packagingOptions {
-            exclude 'META-INF/LICENSE'
-            exclude 'META-INF/LICENSE-FIREBASE.txt'
-            exclude 'META-INF/NOTICE'
-        }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE-FIREBASE.txt'
+        exclude 'META-INF/NOTICE'
     }
+
+    productFlavors {
+        stMarkShubraAbrarFamily {
+            applicationId "com.service.andrewsamir.abrarfamily"
+        }
+
+        stMaregergesHelliopolis {
+            applicationId "service.andrewsamir.maregerges.helopoilis.angels.family"
+        }
+
+        stMarkShubraMahabaFamily {
+            applicationId "service.andrewsamir.maremorkos.shubra.mahaba.family"
+        }
+
+        stMarkShubraHadanaTania {
+            applicationId "service.andrewsamir.mark.shubra.hadana.tania"
+        }
+
+        stMarkShubraTaltaSata {
+            applicationId "service.andrewsamir.maremorkos.shubra.talta.sata"
+        }
+
+    }
+}
 
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.0'
-    compile 'com.google.code.gson:gson:2.3'
+
+    compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+        transitive = true;
+    }
+    compile 'com.android.support:appcompat-v7:25.2.0'
+    compile 'com.google.code.gson:gson:2.7'
     compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.firebase:firebase-client-android:2.5.2'
-
-    compile 'com.google.android.gms:play-services-appindexing:9.0.0'
+    compile 'com.android.support:design:25.2.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta1'
+    compile 'com.android.support:support-v4:25.2.0'
+    compile 'com.android.support:cardview-v7:25.2.0'
+    compile 'com.google.firebase:firebase-database:11.6.0'
+    compile 'com.google.firebase:firebase-auth:11.6.0'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile 'gun0912.ted:tedbottompicker:1.0.12'
+    compile 'com.github.fanyu2013:PhotoCompress:v1.0'
+    testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'

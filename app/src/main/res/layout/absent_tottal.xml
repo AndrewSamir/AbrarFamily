@@ -4,70 +4,15 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 <LinearLayout
     android:layout_width="fill_parent"
-    android:weightSum="7"
-    android:id="@+id/linabs"
-    android:paddingTop="10sp"
-    android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="0dp"
-        android:gravity="center"
-        android:layout_weight="1"
-        android:padding="5sp"
-        android:layout_height="fill_parent"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold"
-        android:text="-"
-        android:id="@+id/textViewAbsent_4"
-        android:layout_gravity="center_horizontal" />
+    android:id="@+id/absentLinearShow"
+    android:orientation="vertical"
+    android:layout_height="fill_parent">
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:padding="5sp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold"
-        android:text="-"
-        android:id="@+id/textViewAbsent_3" />
-
-    <TextView
-        android:layout_width="0dp"
-        android:gravity="center"
-        android:padding="5sp"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold"
-        android:text="-"
-        android:id="@+id/textViewAbsent_2" />
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:padding="5sp"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold"
-        android:text="-"
-        android:id="@+id/textViewAbsent_1" />
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="5sp"
-        android:layout_marginRight="5sp"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:layout_weight="3"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/textViewAbsentName" />
 </LinearLayout>
+    </ScrollView>
 </LinearLayout>

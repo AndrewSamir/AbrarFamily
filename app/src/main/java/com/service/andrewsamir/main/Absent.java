@@ -1,4 +1,4 @@
-package com.service.andrewsamir.abrarfamily;
+package com.service.andrewsamir.main;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,8 +21,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.service.andrewsamir.abrarfamily.adaptors.DBhelper;
-import com.service.andrewsamir.abrarfamily.data.DataDetails;
+import com.service.andrewsamir.main.adaptors.DBhelper;
+import com.service.andrewsamir.main.data.DataDetails;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;

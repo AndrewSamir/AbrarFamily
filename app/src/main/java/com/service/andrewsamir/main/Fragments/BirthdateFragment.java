@@ -1,4 +1,4 @@
-package com.service.andrewsamir.abrarfamily.Fragments;
+package com.service.andrewsamir.main.Fragments;
 
 import android.content.DialogInterface;
 import android.database.Cursor;
@@ -12,10 +12,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.service.andrewsamir.abrarfamily.R;
-import com.service.andrewsamir.abrarfamily.adaptors.BirthdateAdapter;
-import com.service.andrewsamir.abrarfamily.adaptors.DBhelper;
-import com.service.andrewsamir.abrarfamily.data.Birthdate;
+import com.service.andrewsamir.main.R;
+import com.service.andrewsamir.main.adaptors.BirthdateAdapter;
+import com.service.andrewsamir.main.adaptors.DBhelper;
+import com.service.andrewsamir.main.data.Birthdate;
 
 import java.util.ArrayList;
 
@@ -56,7 +56,7 @@ public class BirthdateFragment extends Fragment {
                     Long tsLong = System.currentTimeMillis() / 1000;
 
                     if (c.getLong(3) < tsLong) {
-                        np.add(new com.service.andrewsamir.abrarfamily.data.Birthdate(c.getString(1), c.getString(2), c.getString(0)));
+                        np.add(new com.service.andrewsamir.main.data.Birthdate(c.getString(1), c.getString(2), c.getString(0)));
                     }
                 }
             } while (c.moveToNext());

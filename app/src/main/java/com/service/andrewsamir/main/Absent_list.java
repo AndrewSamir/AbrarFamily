@@ -1,4 +1,4 @@
-package com.service.andrewsamir.abrarfamily;
+package com.service.andrewsamir.main;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -20,8 +20,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.service.andrewsamir.abrarfamily.adaptors.DBhelper;
-import com.service.andrewsamir.abrarfamily.data.AbsentData;
+import com.service.andrewsamir.main.adaptors.DBhelper;
+import com.service.andrewsamir.main.data.AbsentData;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;

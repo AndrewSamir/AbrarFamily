@@ -1,4 +1,4 @@
-package com.service.andrewsamir.abrarfamily.Activities;
+package com.service.andrewsamir.main.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.service.andrewsamir.abrarfamily.R;
-import com.service.andrewsamir.abrarfamily.adaptors.SetAbsentAdapter;
-import com.service.andrewsamir.abrarfamily.data.Name;
+import com.service.andrewsamir.main.R;
+import com.service.andrewsamir.main.adaptors.SetAbsentAdapter;
+import com.service.andrewsamir.main.data.Name;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

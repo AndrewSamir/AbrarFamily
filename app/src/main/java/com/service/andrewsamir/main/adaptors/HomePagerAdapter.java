@@ -1,13 +1,13 @@
-package com.service.andrewsamir.abrarfamily.adaptors;
+package com.service.andrewsamir.main.adaptors;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.service.andrewsamir.abrarfamily.Fragments.AbsentFragment;
-import com.service.andrewsamir.abrarfamily.Fragments.BirthdateFragment;
-import com.service.andrewsamir.abrarfamily.Fragments.EftkadFragment;
-import com.service.andrewsamir.abrarfamily.Fragments.KashfFragment;
+import com.service.andrewsamir.main.Fragments.AbsentFragment;
+import com.service.andrewsamir.main.Fragments.BirthdateFragment;
+import com.service.andrewsamir.main.Fragments.EftkadFragment;
+import com.service.andrewsamir.main.Fragments.KashfFragment;
 
 public class HomePagerAdapter extends FragmentPagerAdapter {
 

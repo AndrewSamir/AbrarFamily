@@ -1,4 +1,4 @@
-package com.service.andrewsamir.abrarfamily.Fragments;
+package com.service.andrewsamir.main.Fragments;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -13,10 +13,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -25,10 +30,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.service.andrewsamir.abrarfamily.Activities.HOME;
-import com.service.andrewsamir.abrarfamily.R;
-import com.service.andrewsamir.abrarfamily.Activities.SetAbsentActivity;
-import com.service.andrewsamir.abrarfamily.data.Name;
+import com.service.andrewsamir.main.Activities.HOME;
+import com.service.andrewsamir.main.Enter_Data;
+import com.service.andrewsamir.main.R;
+import com.service.andrewsamir.main.Activities.SetAbsentActivity;
+import com.service.andrewsamir.main.data.Name;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -87,6 +93,13 @@ public class AbsentFragment extends Fragment {
 
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+
+    }
+
     public void getAbsentData() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -106,7 +119,12 @@ public class AbsentFragment extends Fragment {
                 Iterable<DataSnapshot> myChildren = dataSnapshot.getChildren();
                 String[][] dats = new String[50][100];
 
-                TextView dateText = new TextView(getActivity());
+                TextView dateText;
+                if (getActivity() == null) {
+                    dateText = new TextView(getContext());
+                } else
+                    dateText = new TextView(getActivity());
+
                 dateText.setText("+");
                 dateText.setTextColor(Color.BLACK);
 
@@ -199,86 +217,88 @@ public class AbsentFragment extends Fragment {
                 linearLayout1.setGravity(Gravity.END);
                 lin.addView(linearLayout1);
 
-                try {
-                    for (Name name : KashfFragment.kashfLists) {
-                        linearLayout1 = new LinearLayout(getActivity());
-                        linearLayout1.setOrientation(LinearLayout.HORIZONTAL);
+                if (KashfFragment.kashfLists != null) {
+                    if (KashfFragment.kashfLists.size() > 0) {
 
-                        textView = new TextView(getActivity());
-                        textView.setText(name.getName());
-                        textView.setTextSize(textsize);
-                        textView.setTypeface(null, Typeface.BOLD);
-                        textView.setMaxLines(1);
-                        textView.setBackgroundColor(getResources().getColor(R.color.absent_names_background));
-                        textView.setPadding(0, 0, 40, 0);
 
-                        textView.setTextColor(Color.BLACK);
+                        for (Name name : KashfFragment.kashfLists) {
+                            linearLayout1 = new LinearLayout(getActivity());
+                            linearLayout1.setOrientation(LinearLayout.HORIZONTAL);
 
-                        textView.setWidth(400);
-                        textView.setHeight(height);
+                            textView = new TextView(getActivity());
+                            textView.setText(name.getName());
+                            textView.setTextSize(textsize);
+                            textView.setTypeface(null, Typeface.BOLD);
+                            textView.setMaxLines(1);
+                            textView.setBackgroundColor(getResources().getColor(R.color.absent_names_background));
+                            textView.setPadding(0, 0, 40, 0);
 
-                        textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
+                            textView.setTextColor(Color.BLACK);
 
-                        //////////////////////////////////////////
+                            textView.setWidth(400);
+                            textView.setHeight(height);
 
-                        for (int i = 0; i < dates.size(); i++) {
-                            TextView textView1 = new TextView(getActivity());
-                            textView1.setTextColor(Color.BLACK);
+                            textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.RIGHT);
 
-                            textView1.setWidth(width);
-                            textView1.setHeight(height);
+                            //////////////////////////////////////////
 
-                            ArrayList<String> list = new ArrayList<String>();
-                            for (int j = 0; j < hashMap.get(i); j++)
-                                list.add(dats[i][j]);
-                            if (list.contains(name.getKey())) {
-                                textView1.setText("+");
-                                textView1.setTextSize(textsize);
-                                textView1.setBackgroundColor(getResources().getColor(R.color.absent_plus));
-                            } else {
-                                textView1.setText("-");
-                                textView1.setTextSize(textsize);
-                                textView1.setTextColor(Color.parseColor("#FFFFFF"));
-                                textView1.setBackgroundColor(getResources().getColor(R.color.absent_minus));
+                            for (int i = 0; i < dates.size(); i++) {
+                                TextView textView1 = new TextView(getActivity());
+                                textView1.setTextColor(Color.BLACK);
+
+                                textView1.setWidth(width);
+                                textView1.setHeight(height);
+
+                                ArrayList<String> list = new ArrayList<String>();
+                                for (int j = 0; j < hashMap.get(i); j++)
+                                    list.add(dats[i][j]);
+                                if (list.contains(name.getKey())) {
+                                    textView1.setText("+");
+                                    textView1.setTextSize(textsize);
+                                    textView1.setBackgroundColor(getResources().getColor(R.color.absent_plus));
+                                } else {
+                                    textView1.setText("-");
+                                    textView1.setTextSize(textsize);
+                                    textView1.setTextColor(Color.parseColor("#FFFFFF"));
+                                    textView1.setBackgroundColor(getResources().getColor(R.color.absent_minus));
+
+                                }
+                                textView1.setGravity(Gravity.CENTER);
+
+                                TextView space1 = new TextView(getActivity());
+
+                                space1.setWidth(spaceWidth);
+                                space1.setHeight(spaceWidth);
+
+                                linearLayout1.addView(textView1);
+                                linearLayout1.addView(space1);
 
                             }
-                            textView1.setGravity(Gravity.CENTER);
 
-                            TextView space1 = new TextView(getActivity());
+                            //////////////////////////////////////////
+                            View v1 = new View(getActivity());
+                            v1.setLayoutParams(new LinearLayout.LayoutParams(
+                                    ActionBar.LayoutParams.MATCH_PARENT,
+                                    spaceWidth
+                            ));
+                            v1.setBackgroundColor(Color.parseColor("#E6EE9C"));
 
-                            space1.setWidth(spaceWidth);
-                            space1.setHeight(spaceWidth);
+                            linearLayout1.setGravity(Gravity.END);
+                            LinNames.addView(v1);
+                            LinNames.addView(textView);
 
-                            linearLayout1.addView(textView1);
-                            linearLayout1.addView(space1);
+                            View v = new View(getActivity());
+                            v.setLayoutParams(new LinearLayout.LayoutParams(
+                                    ActionBar.LayoutParams.MATCH_PARENT,
+                                    spaceWidth
+                            ));
+                            v.setBackgroundColor(Color.parseColor("#E6EE9C"));
+
+                            lin.addView(v);
+                            lin.addView(linearLayout1);
 
                         }
-
-                        //////////////////////////////////////////
-                        View v1 = new View(getActivity());
-                        v1.setLayoutParams(new LinearLayout.LayoutParams(
-                                ActionBar.LayoutParams.MATCH_PARENT,
-                                spaceWidth
-                        ));
-                        v1.setBackgroundColor(Color.parseColor("#E6EE9C"));
-
-                        linearLayout1.setGravity(Gravity.END);
-                        LinNames.addView(v1);
-                        LinNames.addView(textView);
-
-                        View v = new View(getActivity());
-                        v.setLayoutParams(new LinearLayout.LayoutParams(
-                                ActionBar.LayoutParams.MATCH_PARENT,
-                                spaceWidth
-                        ));
-                        v.setBackgroundColor(Color.parseColor("#E6EE9C"));
-
-                        lin.addView(v);
-                        lin.addView(linearLayout1);
-
                     }
-                } catch (Resources.NotFoundException e) {
-                    e.printStackTrace();
                 }
                 //firstTime = false;
             }
@@ -294,8 +314,12 @@ public class AbsentFragment extends Fragment {
     private class PageListener extends ViewPager.SimpleOnPageChangeListener {
         public void onPageSelected(int position) {
 
-            KashfFragment.nameAdapter.filter("");
-            KashfFragment.listView.clearTextFilter();
+            try {
+                KashfFragment.mAdapter.filter("");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            //    KashfFragment.listView.clearTextFilter();
 
             if (position == 1) {
                 getAbsentData();
@@ -385,17 +409,12 @@ public class AbsentFragment extends Fragment {
                 date = date + "000";
                 String dateShow = Integer.toString(day) + "-" + Integer.toString(month + 1) + "-" + Integer.toString(year);
 
-                String dayOfWeek = DateFormat.format("EE", new Date(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth() - 1)).toString();
+                Intent abs = new Intent(getActivity(), SetAbsentActivity.class);
+                abs.putExtra("dateShow", dateShow);
+                abs.putExtra("date", date);
+                dialog.dismiss();
+                startActivity(abs);
 
-                if (dayOfWeek.equals("Fri")) {
-                    Intent abs = new Intent(getActivity(), SetAbsentActivity.class);
-                    abs.putExtra("dateShow", dateShow);
-                    abs.putExtra("date", date);
-                    dialog.dismiss();
-                    startActivity(abs);
-                } else {
-                    Toast.makeText(getActivity(), "You Must Choose FRIDAY ", Toast.LENGTH_SHORT).show();
-                }
 
             }
         });
@@ -403,4 +422,22 @@ public class AbsentFragment extends Fragment {
     }
 
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // TODO Auto-generated method stub
+        inflater.inflate(R.menu.absent_fragment, menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add_new_absent:
+                // write your code here
+                createDialog();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
 }

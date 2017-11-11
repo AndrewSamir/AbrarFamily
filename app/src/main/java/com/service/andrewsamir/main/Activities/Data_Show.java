@@ -1,4 +1,4 @@
-package com.service.andrewsamir.abrarfamily.Activities;
+package com.service.andrewsamir.main.Activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,9 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.service.andrewsamir.abrarfamily.Edit_Data;
-import com.service.andrewsamir.abrarfamily.R;
-import com.service.andrewsamir.abrarfamily.Singleton.SingletonDataShow;
+import com.service.andrewsamir.main.Edit_Data;
+import com.service.andrewsamir.main.R;
+import com.service.andrewsamir.main.Singleton.SingletonDataShow;
 
 /**
  * Created by Andrew Samir on 1/30/2016.

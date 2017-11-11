@@ -1,15 +1,22 @@
-package com.service.andrewsamir.abrarfamily;
+package com.service.andrewsamir.main;
 
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
@@ -23,13 +30,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.service.andrewsamir.abrarfamily.Activities.HOME;
-import com.service.andrewsamir.abrarfamily.Singleton.SingletonDataShow;
-import com.service.andrewsamir.abrarfamily.data.SendData;
+import com.service.andrewsamir.main.Activities.HOME;
+import com.service.andrewsamir.main.Singleton.SingletonDataShow;
+import com.service.andrewsamir.main.data.SendData;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.van.fanyu.library.Compresser;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -37,6 +46,10 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
+import android.Manifest;
+
+import gun0912.tedbottompicker.TedBottomPicker;
 
 /**
  * Created by Andrew Samir on 2/11/2016.
@@ -133,35 +146,22 @@ public class Edit_Data extends ActionBarActivity {
 
         imv = (ImageView) findViewById(R.id.imageViewphoto);
         imv.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
-                final CharSequence[] items = {
-                        "Camera", "Gallery"
-                };
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(Edit_Data.this);
-                builder.setTitle("Choose Photo From ..");
-                builder.setItems(items, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int item) {
-                        // Do something with the selection
-                        //mDoneButton.setText(items[item]);
-                        if (items[item].equals("Camera")) {
-                            Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                            startActivityForResult(cameraIntent, CAMERA_REQUEST);
-                        } else if (items[item].equals("Gallery")) {
-                            Intent i = new Intent(
-                                    Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                if (ContextCompat.checkSelfPermission(Edit_Data.this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                    //File write logic here
+                    picImage();
 
-                            startActivityForResult(i, RESULT_LOAD_IMAGE);
-                        }
-                    }
-                });
-                AlertDialog alert = builder.create();
-                alert.show();
+                } else {
+                    ActivityCompat.requestPermissions(Edit_Data.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
 
+                }
             }
 
         });
+
 
         if (!SingletonDataShow.getInstance().getName().equals("e"))
 
@@ -295,8 +295,7 @@ public class Edit_Data extends ActionBarActivity {
                         phone = ephone.getText().toString();
                 } finally {
                     postData();
-                    Intent gohome = new Intent(Edit_Data.this, HOME.class);
-                    startActivity(gohome);
+                    finish();
                 }
 
 
@@ -308,97 +307,36 @@ public class Edit_Data extends ActionBarActivity {
 
     public void postData() {
 
+        SendData sendData = new SendData();
+        sendData.setName(name);
+        sendData.setHomeNo(homeN);
+        sendData.setStreet(street);
+        sendData.setFloor(floor);
+        sendData.setFlat(flat);
+        sendData.setDescription(desc);
+        sendData.setAnotherAdd(another);
+        sendData.setPapa(babamob);
+        sendData.setMama(mamamob);
+        sendData.setPhone(phone);
+        sendData.setBirthdate(date);
+        sendData.setImage(photosend);
+        sendData.setAttendance(attendance);
+        sendData.setLastEftkad(lastEftkad);
+        sendData.setPlace(place);
 
-        if (true) {
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        // DEMO
+        //  DatabaseReference myRef = database.getReference("fsol/BLsc8RMHwtNqQB6C23TC0tIImw92/");
 
-            SendData sendData = new SendData();
-            sendData.setName(name);
-            sendData.setHomeNo(homeN);
-            sendData.setStreet(street);
-            sendData.setFloor(floor);
-            sendData.setFlat(flat);
-            sendData.setDescription(desc);
-            sendData.setAnotherAdd(another);
-            sendData.setPapa(babamob);
-            sendData.setMama(mamamob);
-            sendData.setPhone(phone);
-            sendData.setBirthdate(date);
-            sendData.setImage(photosend);
-            sendData.setAttendance(attendance);
-            sendData.setLastEftkad(lastEftkad);
-            sendData.setPlace(place);
+        //will be
+        DatabaseReference myRef = database.getReference("fsol/"
+                + FirebaseAuth.getInstance().getCurrentUser().getUid()
+                + "/list/"
+                + SingletonDataShow.getInstance().getKey()
+        );
 
-            // Write a message to the database
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            // DEMO
-            //  DatabaseReference myRef = database.getReference("fsol/BLsc8RMHwtNqQB6C23TC0tIImw92/");
-
-            //will be
-            DatabaseReference myRef = database.getReference("fsol/"
-                    + FirebaseAuth.getInstance().getCurrentUser().getUid()
-                    + "/list/"
-                    + SingletonDataShow.getInstance().getKey()
-            );
-
-            myRef.setValue(sendData);
-        }
-
-
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-/*
-            ImageView imageView = (ImageView) findViewById(R.id.imgView);*/
-
-            Bitmap bitmap = BitmapFactory.decodeFile(picturePath);
-            imv.setImageBitmap(bitmap);
-            String imgString = null;
-           /* try {
-                imgString = Base64.encodeToString(getBytesFromBitmap(bitmap),
-                        Base64.NO_WRAP);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            photosend = imgString;*/
-
-            //  photosend = encodeTobase64(bitmap);
-            InputStream imageStream = null;
-            try {
-                imageStream = this.getContentResolver().openInputStream(selectedImage);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-            Bitmap yourSelectedImage = BitmapFactory.decodeStream(imageStream);
-            encodeTobase64(yourSelectedImage);
-
-
-        } else if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
-            Bitmap photo = (Bitmap) data.getExtras().get("data");
-
-            String imgString = Base64.encodeToString(getBytesFromBitmap(photo),
-                    Base64.NO_WRAP);
-            imv.setImageBitmap(photo);
-            photosend = imgString;
-
-        }
-
-
+        myRef.setValue(sendData);
     }
 
 
@@ -424,15 +362,50 @@ public class Edit_Data extends ActionBarActivity {
         return imageEncoded;
     }
 
+    private void picImage() {
+        TedBottomPicker bottomSheetDialogFragment = new TedBottomPicker.Builder(Edit_Data.this)
+                .setOnImageSelectedListener(new TedBottomPicker.OnImageSelectedListener() {
+                    @Override
+                    public void onImageSelected(Uri uri) {
+                        compressedFile(uri);
+                    }
+                })
+                //.setPeekHeight(getResources().getDisplayMetrics().heightPixels/2)
+                .setPeekHeight(1200)
+                .setTitle(getString(R.string.choose_image))
+                .create();
 
-    public byte[] getBytesFromBitmap(Bitmap bitmap) {
+        bottomSheetDialogFragment.show(getSupportFragmentManager());
+
+
+    }
+
+    private void compressedFile(final Uri uri) {
+        // imageUri=uri;
         try {
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-            return stream.toByteArray();
+            Compresser compresser = new Compresser(50, uri.getPath());
+            compresser.doCompress(new Compresser.CompleteListener() {
+                @Override
+                public void onSuccess(String newPath) {
+                    //Log.e("from", "comprees");
+                    imv.setImageURI(Uri.parse(newPath));
+                    Bitmap bitmap = ((BitmapDrawable) imv.getDrawable()).getBitmap();
+                    photosend = encodeTobase64(bitmap);
+
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            //resume tasks needing this permission
+            picImage();
         }
     }
 }

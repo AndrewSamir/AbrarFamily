@@ -1,4 +1,4 @@
-package com.service.andrewsamir.abrarfamily.adaptors;
+package com.service.andrewsamir.main.adaptors;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -196,5 +196,14 @@ public class DBhelper extends SQLiteOpenHelper {
         db.execSQL(strSQL);
 
         return true;
+    }
+
+    public void dropAllTabels() {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("DROP TABLE IF EXISTS " + EFTKAD_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + KASHF_TABLE);
+        db.execSQL("DROP TABLE IF EXISTS " + BIRTHDATE_TABLE);
+
     }
 }

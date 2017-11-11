@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "308327219778",
+    "firebase_url": "https://saintmarkshubrahadanatalta.firebaseio.com",
+    "project_id": "saintmarkshubrahadanatalta",
+    "storage_bucket": "saintmarkshubrahadanatalta.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308327219778:android:5c6d3e5cc43799a0",
+        "android_client_info": {
+          "package_name": "service.andrewsamir.mark.shubra.hadana.tania"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "308327219778-tlrgscter2rb7htkjhk6d9dqs48i6vht.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlF2JIDt42st0mrvH4wHXiX-ozzVfABnc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

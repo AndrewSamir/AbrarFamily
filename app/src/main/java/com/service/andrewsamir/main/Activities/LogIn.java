@@ -1,4 +1,4 @@
-package com.service.andrewsamir.abrarfamily.Activities;
+package com.service.andrewsamir.main.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,9 +14,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.service.andrewsamir.abrarfamily.AddToCalendar.CalendarHelper;
-import com.service.andrewsamir.abrarfamily.MainActivity;
-import com.service.andrewsamir.abrarfamily.R;
+import com.service.andrewsamir.main.AddToCalendar.CalendarHelper;
+import com.service.andrewsamir.main.MainActivity;
+import com.service.andrewsamir.main.R;
 import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

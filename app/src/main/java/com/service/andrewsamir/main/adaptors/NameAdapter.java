@@ -1,4 +1,4 @@
-package com.service.andrewsamir.abrarfamily.adaptors;
+package com.service.andrewsamir.main.adaptors;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -13,8 +13,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.service.andrewsamir.abrarfamily.R;
-import com.service.andrewsamir.abrarfamily.data.Name;
+import com.service.andrewsamir.main.R;
+import com.service.andrewsamir.main.data.Name;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -118,12 +118,6 @@ public class NameAdapter extends BaseAdapter {
         }
 
 
-   /*     NamesAndView container = new NamesAndView();
-        container.name = x;
-        container.view = convertView;
-
-        ImageLoader loaders = new ImageLoader();
-        loaders.execute(container);*/
 
         return convertView;
     }

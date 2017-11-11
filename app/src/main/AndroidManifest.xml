@@ -1,117 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:installLocation="preferExternal"
-    package="com.example.andrewsamir.abrarfamily" >
+    package="com.service.andrewsamir.main"
+    android:installLocation="preferExternal">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
 
-
-<uses-permission
-    android:name="android.permission.INTERNET"
-    />
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
 
-        <activity android:name=".LogIn"
-            android:noHistory="true">
+        <activity
+            android:name="com.service.andrewsamir.main.Activities.LogIn"
+            android:noHistory="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.service.andrewsamir.main.MainActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MainActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.service.andrewsamir.main.Activities.Data_Show"
+            android:parentActivityName="com.service.andrewsamir.main.KashfList">
+            <intent-filter>
+                <action android:name="android.intent.action.Data_Show" />
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.service.andrewsamir.main.KashfList"
+            android:parentActivityName="com.service.andrewsamir.main.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.Kash_List" />
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.service.andrewsamir.main.Absent"
+            android:noHistory="true"
+            android:parentActivityName="com.service.andrewsamir.main.MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.Absent" />
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.service.andrewsamir.main.Eftkad"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.Eftkad" />
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.service.andrewsamir.main.Absent_list"
+            android:noHistory="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.Absent_list" />
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.service.andrewsamir.main.Enter_Data"
+            android:parentActivityName="com.service.andrewsamir.main.Activities.HOME"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.Enter_Data" />
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.service.andrewsamir.main.Edit_Data"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.Edit_Data" />
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="com.service.andrewsamir.main.Services.GetData"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name" />
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name="com.service.andrewsamir.main.Birthdate"
+            android:screenOrientation="portrait"
+            android:noHistory="true" />
+
+        <activity
+            android:name="com.service.andrewsamir.main.Activities.HOME"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.Home" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.service.andrewsamir.main.Activities.SetAbsentActivity"
+            android:label="@string/title_activity_set_absent"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:parentActivityName="com.service.andrewsamir.main.Activities.HOME"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.service.andrewsamir.main.Activities.HOME" />
+        </activity>
+
+        <activity
+            android:name="com.service.andrewsamir.main.Activities.Splash"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-
-
-        <activity android:name=".MainActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MainActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".Enter_Data"
-            android:noHistory="true"
-            android:parentActivityName=".MainActivity"
-
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.Enter_Data" />
-                <data android:mimeType="image/*" />
-                <category android:name="android.intent.category.default" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".Data_Show"
-            android:parentActivityName=".KashfList"
-
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.Data_Show" />
-
-                <category android:name="android.intent.category.default" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".KashfList"
-            android:parentActivityName=".MainActivity"
-
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.Kash_List" />
-
-                <category android:name="android.intent.category.default" />
-            </intent-filter>
-
-        </activity>
-
-        <activity android:name=".Absent"
-            android:parentActivityName=".MainActivity"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.Absent" />
-
-                <category android:name="android.intent.category.default" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".Edit_Data"
-            android:noHistory="true"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.Edit_Data" />
-
-                <category android:name="android.intent.category.default" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".Eftkad"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.Eftkad" />
-
-                <category android:name="android.intent.category.default" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".Absent_list"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.Absent_list" />
-
-                <category android:name="android.intent.category.default" />
-            </intent-filter>
-        </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+            android:name="io.fabric.ApiKey"
+            android:value="3b9c7f980f92f6963cd5070716c2b211ac2e0af3" />
 
     </application>
 

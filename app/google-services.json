@@ -44,6 +44,50 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426574074048:android:2e7c84bd21da7225",
+        "android_client_info": {
+          "package_name": "com.service.andrewsamir.abrarfamily"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "426574074048-re2k541f7344thiqt8ia1bsmj4sb7o4k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.service.andrewsamir.abrarfamily",
+            "certificate_hash": "f0b33f4178f95ce709b043bcf576aca41b8c419b"
+          }
+        },
+        {
+          "client_id": "426574074048-qt6g6spqbpu65bfmuv0qc245dcu2mlco.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAQVWD9ZKuizelGm94qU97EPY92Uy45CI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "426574074048-qt6g6spqbpu65bfmuv0qc245dcu2mlco.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"

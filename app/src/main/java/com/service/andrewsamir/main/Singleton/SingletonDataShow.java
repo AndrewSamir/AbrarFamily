@@ -1,4 +1,4 @@
-package com.service.andrewsamir.abrarfamily.Singleton;
+package com.service.andrewsamir.main.Singleton;
 
 /**
  * Created by andre on 12-May-17.

@@ -1,4 +1,4 @@
-package com.service.andrewsamir.abrarfamily;
+package com.service.andrewsamir.main;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -9,10 +9,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.service.andrewsamir.abrarfamily.Activities.Data_Show;
-import com.service.andrewsamir.abrarfamily.adaptors.DBhelper;
-import com.service.andrewsamir.abrarfamily.adaptors.NameAdapter;
-import com.service.andrewsamir.abrarfamily.data.Name;
+import com.service.andrewsamir.main.Activities.Data_Show;
+import com.service.andrewsamir.main.adaptors.DBhelper;
+import com.service.andrewsamir.main.adaptors.NameAdapter;
+import com.service.andrewsamir.main.data.Name;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.service.andrewsamir.abrarfamily.Services;
+package com.service.andrewsamir.main.Services;
 
 import android.app.Activity;
 import android.app.Service;
@@ -7,8 +7,8 @@ import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.service.andrewsamir.abrarfamily.AddToCalendar.CalendarHelper;
-import com.service.andrewsamir.abrarfamily.adaptors.DBhelper;
+import com.service.andrewsamir.main.AddToCalendar.CalendarHelper;
+import com.service.andrewsamir.main.adaptors.DBhelper;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;

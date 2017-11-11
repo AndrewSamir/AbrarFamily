@@ -1,4 +1,4 @@
-package com.service.andrewsamir.abrarfamily.Activities;
+package com.service.andrewsamir.main.Activities;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.crashlytics.android.Crashlytics;
-import com.service.andrewsamir.abrarfamily.R;
+import com.service.andrewsamir.main.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import io.fabric.sdk.android.Fabric;
