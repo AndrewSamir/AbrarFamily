@@ -33,5 +33,7 @@
     <string name="exit">الخروج</string>
     <string name="signout">تسجيل الخروج</string>
     <string name="title_activity_data_new">Details</string>
+    <string name="export_excel">Export Excel</string>
+    <string name="import_excel">Import Excel</string>
 
 </resources>

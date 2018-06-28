@@ -83,6 +83,10 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'gun0912.ted:tedbottompicker:1.0.12'
     compile 'com.github.fanyu2013:PhotoCompress:v1.0'
+    compile 'com.ajts.androidmads.SQLite2Excel:library:1.0.2'
+    compile 'com.nbsp:library:1.8'
+
     testCompile 'junit:junit:4.12'
+
 }
 apply plugin: 'com.google.gms.google-services'

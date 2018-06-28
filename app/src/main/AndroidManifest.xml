@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -162,10 +163,10 @@
             android:name="io.fabric.ApiKey"
             android:value="3b9c7f980f92f6963cd5070716c2b211ac2e0af3" />
 
-        <activity
+<!--        <activity
             android:name=".DataNewActivity"
             android:label="@string/title_activity_data_new"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>-->
     </application>
 
 </manifest>

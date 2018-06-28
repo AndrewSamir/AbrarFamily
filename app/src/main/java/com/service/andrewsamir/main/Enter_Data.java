@@ -103,7 +103,7 @@ public class Enter_Data extends ActionBarActivity {
 
         fasl.setText("  فصل  " + prefs.getString("nameFasl", null));
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
