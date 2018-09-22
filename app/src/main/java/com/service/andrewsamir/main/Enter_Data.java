@@ -44,6 +44,7 @@ import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.Objects;
 
 import gun0912.tedbottompicker.TedBottomPicker;
 
@@ -92,6 +93,8 @@ public class Enter_Data extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+
         setContentView(R.layout.enter_data);
         SharedPreferences jsonData = getApplicationContext().getSharedPreferences("jsonData", MODE_PRIVATE);
 
@@ -103,7 +106,6 @@ public class Enter_Data extends ActionBarActivity {
 
         fasl.setText("  فصل  " + prefs.getString("nameFasl", null));
 
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.US);

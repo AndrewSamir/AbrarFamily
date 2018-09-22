@@ -203,7 +203,7 @@ public class HOME extends AppCompatActivity
                     Log.d("dbKashf", e.toString());
                 }
             });
-        } else if (id == R.id.nav_import_excel)
+        }/* else if (id == R.id.nav_import_excel)
         {
             new MaterialFilePicker()
                     .withActivity(this)
@@ -212,7 +212,7 @@ public class HOME extends AppCompatActivity
                     .withFilterDirectories(true) // Set directories filterable (false by default)
                     .withHiddenFiles(true) // Show hidden files and folders
                     .start();
-        }
+        }*/
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

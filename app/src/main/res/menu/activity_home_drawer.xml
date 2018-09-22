@@ -26,12 +26,12 @@
             android:icon="@drawable/ic_action_exit_to_app"
             android:title="@string/export_excel" />
     </group>
-    <group>
+  <!--  <group>
         <item
             android:id="@+id/nav_import_excel"
             android:icon="@drawable/ic_action_exit_to_app"
             android:title="@string/import_excel" />
-    </group>
+    </group>-->
 
     <group>
         <item

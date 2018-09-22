@@ -94,22 +94,22 @@ public class EftkadFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                SingletonDataShow.getInstance().setAnotherAdd(kashfLists.get(pos.get(position)).getAnotherAdd());
-                SingletonDataShow.getInstance().setAttendance(kashfLists.get(pos.get(position)).getAttendance());
-                SingletonDataShow.getInstance().setBirthdate(kashfLists.get(pos.get(position)).getBirthdate());
-                SingletonDataShow.getInstance().setDescription(kashfLists.get(pos.get(position)).getDescription());
-                SingletonDataShow.getInstance().setFlat(kashfLists.get(pos.get(position)).getFlat());
-                SingletonDataShow.getInstance().setFloor(kashfLists.get(pos.get(position)).getFloor());
-                SingletonDataShow.getInstance().setHomeNo(kashfLists.get(pos.get(position)).getHomeNo());
-                SingletonDataShow.getInstance().setImage(kashfLists.get(pos.get(position)).getImage());
-                SingletonDataShow.getInstance().setLastEftkad(kashfLists.get(pos.get(position)).getLastEftkad());
-                SingletonDataShow.getInstance().setMama(kashfLists.get(pos.get(position)).getMama());
-                SingletonDataShow.getInstance().setName(kashfLists.get(pos.get(position)).getName());
-                SingletonDataShow.getInstance().setPapa(kashfLists.get(pos.get(position)).getPapa());
-                SingletonDataShow.getInstance().setPhone(kashfLists.get(pos.get(position)).getPhone());
-                SingletonDataShow.getInstance().setPlace(kashfLists.get(pos.get(position)).getPlace());
-                SingletonDataShow.getInstance().setStreet(kashfLists.get(pos.get(position)).getStreet());
-                SingletonDataShow.getInstance().setKey(kashfLists.get(pos.get(position)).getKey());
+                SingletonDataShow.getInstance().setAnotherAdd(np_eftkad.get(position).getAnotherAdd());
+                SingletonDataShow.getInstance().setAttendance(np_eftkad.get(position).getAttendance());
+                SingletonDataShow.getInstance().setBirthdate(np_eftkad.get(position).getBirthdate());
+                SingletonDataShow.getInstance().setDescription(np_eftkad.get(position).getDescription());
+                SingletonDataShow.getInstance().setFlat(np_eftkad.get(position).getFlat());
+                SingletonDataShow.getInstance().setFloor(np_eftkad.get(position).getFloor());
+                SingletonDataShow.getInstance().setHomeNo(np_eftkad.get(position).getHomeNo());
+                SingletonDataShow.getInstance().setImage(np_eftkad.get(position).getImage());
+                SingletonDataShow.getInstance().setLastEftkad(np_eftkad.get(position).getLastEftkad());
+                SingletonDataShow.getInstance().setMama(np_eftkad.get(position).getMama());
+                SingletonDataShow.getInstance().setName(np_eftkad.get(position).getName());
+                SingletonDataShow.getInstance().setPapa(np_eftkad.get(position).getPapa());
+                SingletonDataShow.getInstance().setPhone(np_eftkad.get(position).getPhone());
+                SingletonDataShow.getInstance().setPlace(np_eftkad.get(position).getPlace());
+                SingletonDataShow.getInstance().setStreet(np_eftkad.get(position).getStreet());
+                SingletonDataShow.getInstance().setKey(np_eftkad.get(position).getKey());
                 Intent showdata = new Intent(getActivity(), Data_Show.class);
                 //  showdata.putExtra("position", pos.get(position));
 

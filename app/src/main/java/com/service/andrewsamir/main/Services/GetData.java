@@ -88,9 +88,9 @@ public class GetData  extends Service {
                         int month = Integer.parseInt(birthArray[1]);
                         int year;
                         if (month > 9)
-                            year = 2016;
+                            year = 2018;
                         else
-                            year = 2017;
+                            year = 2019;
                         calendar.set(year, month-1, day,10,0,0);
                         long startTime = calendar.getTimeInMillis();
                         Log.e("birthdateTimestamp",startTime+"");

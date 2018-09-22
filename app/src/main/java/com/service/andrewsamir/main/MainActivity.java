@@ -247,9 +247,9 @@ public class MainActivity extends AppCompatActivity {
                         int month = Integer.parseInt(birthArray[1]);
                         int year;
                         if (month > 8)
-                            year = 2017;
-                        else
                             year = 2018;
+                        else
+                            year = 2019;
                         calendar.set(year, month-1, day,10,0,0);
                         long startTime = calendar.getTimeInMillis();
                         Log.e("birthdateTimestamp",startTime+"");

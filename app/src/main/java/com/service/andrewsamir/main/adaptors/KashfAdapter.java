@@ -110,6 +110,8 @@ public class KashfAdapter extends RecyclerView.Adapter<KashfAdapter.MyViewHolder
                 e.printStackTrace();
             }
 
+        } else {
+            holder.circleImageView.setImageDrawable(activity.getResources().getDrawable(R.drawable.defualt));
         }
 
         holder.cardKashfItem.setOnLongClickListener(new View.OnLongClickListener() {
@@ -141,7 +143,7 @@ public class KashfAdapter extends RecyclerView.Adapter<KashfAdapter.MyViewHolder
                 SingletonDataShow.getInstance().setStreet(kashfItem.getStreet());
                 SingletonDataShow.getInstance().setKey(kashfItem.getKey());
 
-              //  activity.startActivity(new Intent(activity, Data_Show.class));
+                //  activity.startActivity(new Intent(activity, Data_Show.class));
 
                 Intent intent = new Intent(activity, Data_Show.class);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

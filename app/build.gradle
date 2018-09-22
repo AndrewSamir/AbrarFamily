@@ -16,15 +16,26 @@ repositories {
 
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion '25.0.0'
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword 'an0172009155ew'
+            storeFile file('D:/Android/signed apks/abrarFamily.jks')
+            storePassword 'an0172009155ew'
+        }
+    }
+    compileSdkVersion 26
+    buildToolsVersion '27.0.3'
     useLibrary 'org.apache.http.legacy'
+    flavorDimensions "default"
     defaultConfig {
         applicationId "com.service.andrewsamir.abrarfamily"
         minSdkVersion 16
-        targetSdkVersion 25
-        versionCode 11
-        versionName "1.7"
+        targetSdkVersion 26
+        versionCode 12
+        versionName "1.8"
+        multiDexEnabled true
+
     }
     buildTypes {
         release {
@@ -32,13 +43,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
     packagingOptions {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE-FIREBASE.txt'
         exclude 'META-INF/NOTICE'
     }
-
     productFlavors {
         stMarkShubraAbrarFamily {
             applicationId "com.service.andrewsamir.abrarfamily"
@@ -65,28 +74,27 @@ android {
 
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
-    compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
         transitive = true;
     }
-    compile 'com.android.support:appcompat-v7:25.2.0'
-    compile 'com.google.code.gson:gson:2.7'
-    compile 'com.mcxiaoke.volley:library:1.0.19'
-    compile 'com.firebase:firebase-client-android:2.5.2'
-    compile 'com.android.support:design:25.2.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta1'
-    compile 'com.android.support:support-v4:25.2.0'
-    compile 'com.android.support:cardview-v7:25.2.0'
-    compile 'com.google.firebase:firebase-database:11.6.0'
-    compile 'com.google.firebase:firebase-auth:11.6.0'
-    compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'gun0912.ted:tedbottompicker:1.0.12'
-    compile 'com.github.fanyu2013:PhotoCompress:v1.0'
-    compile 'com.ajts.androidmads.SQLite2Excel:library:1.0.2'
-    compile 'com.nbsp:library:1.8'
-
-    testCompile 'junit:junit:4.12'
-
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.android.support:appcompat-v7:25.2.0'
+    implementation 'com.google.code.gson:gson:2.7'
+    implementation 'com.mcxiaoke.volley:library:1.0.19'
+    implementation 'com.firebase:firebase-client-android:2.5.2'
+    implementation 'com.android.support:design:25.2.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.0-beta1'
+    implementation 'com.android.support:support-v4:25.2.0'
+    implementation 'com.android.support:cardview-v7:25.2.0'
+    implementation 'com.google.firebase:firebase-database:11.6.0'
+    implementation 'com.google.firebase:firebase-auth:11.6.0'
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
+    implementation 'gun0912.ted:tedbottompicker:1.0.12'
+    implementation 'com.github.fanyu2013:PhotoCompress:v1.0'
+    implementation 'com.ajts.androidmads.SQLite2Excel:library:1.0.2'
+    implementation 'com.nbsp:library:1.8'
+    implementation 'com.ajts.androidmads.SQLite2Excel:library:1.0.2'
+    testImplementation 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'
